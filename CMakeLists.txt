@@ -32,6 +32,6 @@ add_subdirectory("external/glfw")
 add_subdirectory("DiaBolic")
 
 # Set the startup project.
-set_directory_properties( PROPERTIES
-	VS_STARTUP_PROJECT "DiaBolic"
-)
+if( MSVC )
+	set_property( DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT "DiaBolic" )
+endif()

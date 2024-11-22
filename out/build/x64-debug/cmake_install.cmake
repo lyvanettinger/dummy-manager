@@ -35,7 +35,7 @@ endif()
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
   include("D:/BUAS/SelfStudies/DB/DialogueBox/out/build/x64-debug/external/DirectXTex/cmake_install.cmake")
-  include("D:/BUAS/SelfStudies/DB/DialogueBox/out/build/x64-debug/external/GLFW/cmake_install.cmake")
+  include("D:/BUAS/SelfStudies/DB/DialogueBox/out/build/x64-debug/external/glfw/cmake_install.cmake")
   include("D:/BUAS/SelfStudies/DB/DialogueBox/out/build/x64-debug/DiaBolic/cmake_install.cmake")
 
 endif()

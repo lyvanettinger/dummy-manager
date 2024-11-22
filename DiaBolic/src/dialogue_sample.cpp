@@ -1,5 +1,3 @@
-#include "pch.hpp"
-
 #include <memory>
 
 #include "dialogue_sample.hpp"

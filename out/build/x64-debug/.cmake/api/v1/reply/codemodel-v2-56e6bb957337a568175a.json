@@ -36,12 +36,12 @@
 					]
 				},
 				{
-					"build" : "external/GLFW",
+					"build" : "external/glfw",
 					"childIndexes" : 
 					[
 						3
 					],
-					"jsonFile" : "directory-external.GLFW-Debug-f1eaea38cc32b7856402.json",
+					"jsonFile" : "directory-external.glfw-Debug-32262a0c72daaba76ac5.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.4"
@@ -51,8 +51,8 @@
 					"source" : "external/glfw"
 				},
 				{
-					"build" : "external/GLFW/src",
-					"jsonFile" : "directory-external.GLFW.src-Debug-11114092ee3d0a78eaff.json",
+					"build" : "external/glfw/src",
+					"jsonFile" : "directory-external.glfw.src-Debug-1c6013c09899f4bbf608.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.4"
@@ -123,7 +123,7 @@
 				{
 					"directoryIndex" : 4,
 					"id" : "DiaBolic::@fa22d10b3d217554e0e0",
-					"jsonFile" : "target-DiaBolic-Debug-5b312e1c46d93398755c.json",
+					"jsonFile" : "target-DiaBolic-Debug-28bab9c2d9e304bfa0ab.json",
 					"name" : "DiaBolic",
 					"projectIndex" : 0
 				},
@@ -136,15 +136,15 @@
 				},
 				{
 					"directoryIndex" : 3,
-					"id" : "glfw::@39536130fdb1aa6d70f0",
-					"jsonFile" : "target-glfw-Debug-68b7d00cb59eb03b3ba0.json",
+					"id" : "glfw::@ca12bac854c2ac6b2230",
+					"jsonFile" : "target-glfw-Debug-adced44420a04a68198f.json",
 					"name" : "glfw",
 					"projectIndex" : 1
 				},
 				{
 					"directoryIndex" : 3,
-					"id" : "update_mappings::@39536130fdb1aa6d70f0",
-					"jsonFile" : "target-update_mappings-Debug-47aec3126cdb073a7f78.json",
+					"id" : "update_mappings::@ca12bac854c2ac6b2230",
+					"jsonFile" : "target-update_mappings-Debug-313632e55bd030bf62f9.json",
 					"name" : "update_mappings",
 					"projectIndex" : 1
 				}

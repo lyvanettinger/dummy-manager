@@ -1,5 +1,3 @@
-#include "pch.hpp"
-
 #include "resource_util.hpp"
 #include "dx12_helpers.hpp"
 

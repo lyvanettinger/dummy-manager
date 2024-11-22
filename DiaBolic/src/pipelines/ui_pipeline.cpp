@@ -1,5 +1,3 @@
-#include "pch.hpp"
-
 #include "pipelines/ui_pipeline.hpp"
 
 #include "dx12_helpers.hpp"

@@ -295,24 +295,24 @@ build external\DirectXTex\rebuild_cache: phony external\DirectXTex\CMakeFiles\re
 #############################################
 # Utility command for edit_cache
 
-build external\GLFW\CMakeFiles\edit_cache.util: CUSTOM_COMMAND
-  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D D:\BUAS\SelfStudies\DB\DialogueBox\out\build\x64-debug\external\GLFW && "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
+build external\glfw\CMakeFiles\edit_cache.util: CUSTOM_COMMAND
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D D:\BUAS\SelfStudies\DB\DialogueBox\out\build\x64-debug\external\glfw && "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
   DESC = No interactive CMake dialog available...
   restat = 1
 
-build external\GLFW\edit_cache: phony external\GLFW\CMakeFiles\edit_cache.util
+build external\glfw\edit_cache: phony external\glfw\CMakeFiles\edit_cache.util
 
 
 #############################################
 # Utility command for rebuild_cache
 
-build external\GLFW\CMakeFiles\rebuild_cache.util: CUSTOM_COMMAND
-  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D D:\BUAS\SelfStudies\DB\DialogueBox\out\build\x64-debug\external\GLFW && "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" --regenerate-during-build -SD:\BUAS\SelfStudies\DB\DialogueBox -BD:\BUAS\SelfStudies\DB\DialogueBox\out\build\x64-debug"
+build external\glfw\CMakeFiles\rebuild_cache.util: CUSTOM_COMMAND
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D D:\BUAS\SelfStudies\DB\DialogueBox\out\build\x64-debug\external\glfw && "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" --regenerate-during-build -SD:\BUAS\SelfStudies\DB\DialogueBox -BD:\BUAS\SelfStudies\DB\DialogueBox\out\build\x64-debug"
   DESC = Running CMake to regenerate build system...
   pool = console
   restat = 1
 
-build external\GLFW\rebuild_cache: phony external\GLFW\CMakeFiles\rebuild_cache.util
+build external\glfw\rebuild_cache: phony external\glfw\CMakeFiles\rebuild_cache.util
 
 # =============================================================================
 # Write statements declared in CMakeLists.txt:
@@ -328,193 +328,193 @@ build external\GLFW\rebuild_cache: phony external\GLFW\CMakeFiles\rebuild_cache.
 
 build cmake_object_order_depends_target_glfw: phony || .
 
-build external\GLFW\src\CMakeFiles\glfw.dir\context.c.obj: C_COMPILER__glfw_unscanned_Debug D$:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\src\context.c || cmake_object_order_depends_target_glfw
+build external\glfw\src\CMakeFiles\glfw.dir\context.c.obj: C_COMPILER__glfw_unscanned_Debug D$:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\src\context.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -D_CRT_SECURE_NO_WARNINGS -D_GLFW_WIN32 -D_UNICODE
   FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Zi /Ob0 /Od /RTC1 /MP /W3
-  INCLUDES = -ID:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\include -ID:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\src -ID:\BUAS\SelfStudies\DB\DialogueBox\out\build\x64-debug\external\GLFW\src
-  OBJECT_DIR = external\GLFW\src\CMakeFiles\glfw.dir
-  OBJECT_FILE_DIR = external\GLFW\src\CMakeFiles\glfw.dir
-  TARGET_COMPILE_PDB = external\GLFW\src\CMakeFiles\glfw.dir\glfw.pdb
+  INCLUDES = -ID:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\include -ID:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\src -ID:\BUAS\SelfStudies\DB\DialogueBox\out\build\x64-debug\external\glfw\src
+  OBJECT_DIR = external\glfw\src\CMakeFiles\glfw.dir
+  OBJECT_FILE_DIR = external\glfw\src\CMakeFiles\glfw.dir
+  TARGET_COMPILE_PDB = external\glfw\src\CMakeFiles\glfw.dir\glfw.pdb
   TARGET_PDB = lib\glfw3.pdb
 
-build external\GLFW\src\CMakeFiles\glfw.dir\init.c.obj: C_COMPILER__glfw_unscanned_Debug D$:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\src\init.c || cmake_object_order_depends_target_glfw
+build external\glfw\src\CMakeFiles\glfw.dir\init.c.obj: C_COMPILER__glfw_unscanned_Debug D$:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\src\init.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -D_CRT_SECURE_NO_WARNINGS -D_GLFW_WIN32 -D_UNICODE
   FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Zi /Ob0 /Od /RTC1 /MP /W3
-  INCLUDES = -ID:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\include -ID:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\src -ID:\BUAS\SelfStudies\DB\DialogueBox\out\build\x64-debug\external\GLFW\src
-  OBJECT_DIR = external\GLFW\src\CMakeFiles\glfw.dir
-  OBJECT_FILE_DIR = external\GLFW\src\CMakeFiles\glfw.dir
-  TARGET_COMPILE_PDB = external\GLFW\src\CMakeFiles\glfw.dir\glfw.pdb
+  INCLUDES = -ID:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\include -ID:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\src -ID:\BUAS\SelfStudies\DB\DialogueBox\out\build\x64-debug\external\glfw\src
+  OBJECT_DIR = external\glfw\src\CMakeFiles\glfw.dir
+  OBJECT_FILE_DIR = external\glfw\src\CMakeFiles\glfw.dir
+  TARGET_COMPILE_PDB = external\glfw\src\CMakeFiles\glfw.dir\glfw.pdb
   TARGET_PDB = lib\glfw3.pdb
 
-build external\GLFW\src\CMakeFiles\glfw.dir\input.c.obj: C_COMPILER__glfw_unscanned_Debug D$:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\src\input.c || cmake_object_order_depends_target_glfw
+build external\glfw\src\CMakeFiles\glfw.dir\input.c.obj: C_COMPILER__glfw_unscanned_Debug D$:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\src\input.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -D_CRT_SECURE_NO_WARNINGS -D_GLFW_WIN32 -D_UNICODE
   FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Zi /Ob0 /Od /RTC1 /MP /W3
-  INCLUDES = -ID:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\include -ID:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\src -ID:\BUAS\SelfStudies\DB\DialogueBox\out\build\x64-debug\external\GLFW\src
-  OBJECT_DIR = external\GLFW\src\CMakeFiles\glfw.dir
-  OBJECT_FILE_DIR = external\GLFW\src\CMakeFiles\glfw.dir
-  TARGET_COMPILE_PDB = external\GLFW\src\CMakeFiles\glfw.dir\glfw.pdb
+  INCLUDES = -ID:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\include -ID:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\src -ID:\BUAS\SelfStudies\DB\DialogueBox\out\build\x64-debug\external\glfw\src
+  OBJECT_DIR = external\glfw\src\CMakeFiles\glfw.dir
+  OBJECT_FILE_DIR = external\glfw\src\CMakeFiles\glfw.dir
+  TARGET_COMPILE_PDB = external\glfw\src\CMakeFiles\glfw.dir\glfw.pdb
   TARGET_PDB = lib\glfw3.pdb
 
-build external\GLFW\src\CMakeFiles\glfw.dir\monitor.c.obj: C_COMPILER__glfw_unscanned_Debug D$:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\src\monitor.c || cmake_object_order_depends_target_glfw
+build external\glfw\src\CMakeFiles\glfw.dir\monitor.c.obj: C_COMPILER__glfw_unscanned_Debug D$:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\src\monitor.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -D_CRT_SECURE_NO_WARNINGS -D_GLFW_WIN32 -D_UNICODE
   FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Zi /Ob0 /Od /RTC1 /MP /W3
-  INCLUDES = -ID:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\include -ID:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\src -ID:\BUAS\SelfStudies\DB\DialogueBox\out\build\x64-debug\external\GLFW\src
-  OBJECT_DIR = external\GLFW\src\CMakeFiles\glfw.dir
-  OBJECT_FILE_DIR = external\GLFW\src\CMakeFiles\glfw.dir
-  TARGET_COMPILE_PDB = external\GLFW\src\CMakeFiles\glfw.dir\glfw.pdb
+  INCLUDES = -ID:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\include -ID:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\src -ID:\BUAS\SelfStudies\DB\DialogueBox\out\build\x64-debug\external\glfw\src
+  OBJECT_DIR = external\glfw\src\CMakeFiles\glfw.dir
+  OBJECT_FILE_DIR = external\glfw\src\CMakeFiles\glfw.dir
+  TARGET_COMPILE_PDB = external\glfw\src\CMakeFiles\glfw.dir\glfw.pdb
   TARGET_PDB = lib\glfw3.pdb
 
-build external\GLFW\src\CMakeFiles\glfw.dir\platform.c.obj: C_COMPILER__glfw_unscanned_Debug D$:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\src\platform.c || cmake_object_order_depends_target_glfw
+build external\glfw\src\CMakeFiles\glfw.dir\platform.c.obj: C_COMPILER__glfw_unscanned_Debug D$:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\src\platform.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -D_CRT_SECURE_NO_WARNINGS -D_GLFW_WIN32 -D_UNICODE
   FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Zi /Ob0 /Od /RTC1 /MP /W3
-  INCLUDES = -ID:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\include -ID:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\src -ID:\BUAS\SelfStudies\DB\DialogueBox\out\build\x64-debug\external\GLFW\src
-  OBJECT_DIR = external\GLFW\src\CMakeFiles\glfw.dir
-  OBJECT_FILE_DIR = external\GLFW\src\CMakeFiles\glfw.dir
-  TARGET_COMPILE_PDB = external\GLFW\src\CMakeFiles\glfw.dir\glfw.pdb
+  INCLUDES = -ID:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\include -ID:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\src -ID:\BUAS\SelfStudies\DB\DialogueBox\out\build\x64-debug\external\glfw\src
+  OBJECT_DIR = external\glfw\src\CMakeFiles\glfw.dir
+  OBJECT_FILE_DIR = external\glfw\src\CMakeFiles\glfw.dir
+  TARGET_COMPILE_PDB = external\glfw\src\CMakeFiles\glfw.dir\glfw.pdb
   TARGET_PDB = lib\glfw3.pdb
 
-build external\GLFW\src\CMakeFiles\glfw.dir\vulkan.c.obj: C_COMPILER__glfw_unscanned_Debug D$:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\src\vulkan.c || cmake_object_order_depends_target_glfw
+build external\glfw\src\CMakeFiles\glfw.dir\vulkan.c.obj: C_COMPILER__glfw_unscanned_Debug D$:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\src\vulkan.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -D_CRT_SECURE_NO_WARNINGS -D_GLFW_WIN32 -D_UNICODE
   FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Zi /Ob0 /Od /RTC1 /MP /W3
-  INCLUDES = -ID:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\include -ID:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\src -ID:\BUAS\SelfStudies\DB\DialogueBox\out\build\x64-debug\external\GLFW\src
-  OBJECT_DIR = external\GLFW\src\CMakeFiles\glfw.dir
-  OBJECT_FILE_DIR = external\GLFW\src\CMakeFiles\glfw.dir
-  TARGET_COMPILE_PDB = external\GLFW\src\CMakeFiles\glfw.dir\glfw.pdb
+  INCLUDES = -ID:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\include -ID:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\src -ID:\BUAS\SelfStudies\DB\DialogueBox\out\build\x64-debug\external\glfw\src
+  OBJECT_DIR = external\glfw\src\CMakeFiles\glfw.dir
+  OBJECT_FILE_DIR = external\glfw\src\CMakeFiles\glfw.dir
+  TARGET_COMPILE_PDB = external\glfw\src\CMakeFiles\glfw.dir\glfw.pdb
   TARGET_PDB = lib\glfw3.pdb
 
-build external\GLFW\src\CMakeFiles\glfw.dir\window.c.obj: C_COMPILER__glfw_unscanned_Debug D$:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\src\window.c || cmake_object_order_depends_target_glfw
+build external\glfw\src\CMakeFiles\glfw.dir\window.c.obj: C_COMPILER__glfw_unscanned_Debug D$:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\src\window.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -D_CRT_SECURE_NO_WARNINGS -D_GLFW_WIN32 -D_UNICODE
   FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Zi /Ob0 /Od /RTC1 /MP /W3
-  INCLUDES = -ID:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\include -ID:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\src -ID:\BUAS\SelfStudies\DB\DialogueBox\out\build\x64-debug\external\GLFW\src
-  OBJECT_DIR = external\GLFW\src\CMakeFiles\glfw.dir
-  OBJECT_FILE_DIR = external\GLFW\src\CMakeFiles\glfw.dir
-  TARGET_COMPILE_PDB = external\GLFW\src\CMakeFiles\glfw.dir\glfw.pdb
+  INCLUDES = -ID:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\include -ID:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\src -ID:\BUAS\SelfStudies\DB\DialogueBox\out\build\x64-debug\external\glfw\src
+  OBJECT_DIR = external\glfw\src\CMakeFiles\glfw.dir
+  OBJECT_FILE_DIR = external\glfw\src\CMakeFiles\glfw.dir
+  TARGET_COMPILE_PDB = external\glfw\src\CMakeFiles\glfw.dir\glfw.pdb
   TARGET_PDB = lib\glfw3.pdb
 
-build external\GLFW\src\CMakeFiles\glfw.dir\egl_context.c.obj: C_COMPILER__glfw_unscanned_Debug D$:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\src\egl_context.c || cmake_object_order_depends_target_glfw
+build external\glfw\src\CMakeFiles\glfw.dir\egl_context.c.obj: C_COMPILER__glfw_unscanned_Debug D$:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\src\egl_context.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -D_CRT_SECURE_NO_WARNINGS -D_GLFW_WIN32 -D_UNICODE
   FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Zi /Ob0 /Od /RTC1 /MP /W3
-  INCLUDES = -ID:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\include -ID:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\src -ID:\BUAS\SelfStudies\DB\DialogueBox\out\build\x64-debug\external\GLFW\src
-  OBJECT_DIR = external\GLFW\src\CMakeFiles\glfw.dir
-  OBJECT_FILE_DIR = external\GLFW\src\CMakeFiles\glfw.dir
-  TARGET_COMPILE_PDB = external\GLFW\src\CMakeFiles\glfw.dir\glfw.pdb
+  INCLUDES = -ID:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\include -ID:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\src -ID:\BUAS\SelfStudies\DB\DialogueBox\out\build\x64-debug\external\glfw\src
+  OBJECT_DIR = external\glfw\src\CMakeFiles\glfw.dir
+  OBJECT_FILE_DIR = external\glfw\src\CMakeFiles\glfw.dir
+  TARGET_COMPILE_PDB = external\glfw\src\CMakeFiles\glfw.dir\glfw.pdb
   TARGET_PDB = lib\glfw3.pdb
 
-build external\GLFW\src\CMakeFiles\glfw.dir\osmesa_context.c.obj: C_COMPILER__glfw_unscanned_Debug D$:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\src\osmesa_context.c || cmake_object_order_depends_target_glfw
+build external\glfw\src\CMakeFiles\glfw.dir\osmesa_context.c.obj: C_COMPILER__glfw_unscanned_Debug D$:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\src\osmesa_context.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -D_CRT_SECURE_NO_WARNINGS -D_GLFW_WIN32 -D_UNICODE
   FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Zi /Ob0 /Od /RTC1 /MP /W3
-  INCLUDES = -ID:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\include -ID:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\src -ID:\BUAS\SelfStudies\DB\DialogueBox\out\build\x64-debug\external\GLFW\src
-  OBJECT_DIR = external\GLFW\src\CMakeFiles\glfw.dir
-  OBJECT_FILE_DIR = external\GLFW\src\CMakeFiles\glfw.dir
-  TARGET_COMPILE_PDB = external\GLFW\src\CMakeFiles\glfw.dir\glfw.pdb
+  INCLUDES = -ID:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\include -ID:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\src -ID:\BUAS\SelfStudies\DB\DialogueBox\out\build\x64-debug\external\glfw\src
+  OBJECT_DIR = external\glfw\src\CMakeFiles\glfw.dir
+  OBJECT_FILE_DIR = external\glfw\src\CMakeFiles\glfw.dir
+  TARGET_COMPILE_PDB = external\glfw\src\CMakeFiles\glfw.dir\glfw.pdb
   TARGET_PDB = lib\glfw3.pdb
 
-build external\GLFW\src\CMakeFiles\glfw.dir\null_init.c.obj: C_COMPILER__glfw_unscanned_Debug D$:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\src\null_init.c || cmake_object_order_depends_target_glfw
+build external\glfw\src\CMakeFiles\glfw.dir\null_init.c.obj: C_COMPILER__glfw_unscanned_Debug D$:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\src\null_init.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -D_CRT_SECURE_NO_WARNINGS -D_GLFW_WIN32 -D_UNICODE
   FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Zi /Ob0 /Od /RTC1 /MP /W3
-  INCLUDES = -ID:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\include -ID:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\src -ID:\BUAS\SelfStudies\DB\DialogueBox\out\build\x64-debug\external\GLFW\src
-  OBJECT_DIR = external\GLFW\src\CMakeFiles\glfw.dir
-  OBJECT_FILE_DIR = external\GLFW\src\CMakeFiles\glfw.dir
-  TARGET_COMPILE_PDB = external\GLFW\src\CMakeFiles\glfw.dir\glfw.pdb
+  INCLUDES = -ID:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\include -ID:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\src -ID:\BUAS\SelfStudies\DB\DialogueBox\out\build\x64-debug\external\glfw\src
+  OBJECT_DIR = external\glfw\src\CMakeFiles\glfw.dir
+  OBJECT_FILE_DIR = external\glfw\src\CMakeFiles\glfw.dir
+  TARGET_COMPILE_PDB = external\glfw\src\CMakeFiles\glfw.dir\glfw.pdb
   TARGET_PDB = lib\glfw3.pdb
 
-build external\GLFW\src\CMakeFiles\glfw.dir\null_monitor.c.obj: C_COMPILER__glfw_unscanned_Debug D$:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\src\null_monitor.c || cmake_object_order_depends_target_glfw
+build external\glfw\src\CMakeFiles\glfw.dir\null_monitor.c.obj: C_COMPILER__glfw_unscanned_Debug D$:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\src\null_monitor.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -D_CRT_SECURE_NO_WARNINGS -D_GLFW_WIN32 -D_UNICODE
   FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Zi /Ob0 /Od /RTC1 /MP /W3
-  INCLUDES = -ID:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\include -ID:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\src -ID:\BUAS\SelfStudies\DB\DialogueBox\out\build\x64-debug\external\GLFW\src
-  OBJECT_DIR = external\GLFW\src\CMakeFiles\glfw.dir
-  OBJECT_FILE_DIR = external\GLFW\src\CMakeFiles\glfw.dir
-  TARGET_COMPILE_PDB = external\GLFW\src\CMakeFiles\glfw.dir\glfw.pdb
+  INCLUDES = -ID:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\include -ID:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\src -ID:\BUAS\SelfStudies\DB\DialogueBox\out\build\x64-debug\external\glfw\src
+  OBJECT_DIR = external\glfw\src\CMakeFiles\glfw.dir
+  OBJECT_FILE_DIR = external\glfw\src\CMakeFiles\glfw.dir
+  TARGET_COMPILE_PDB = external\glfw\src\CMakeFiles\glfw.dir\glfw.pdb
   TARGET_PDB = lib\glfw3.pdb
 
-build external\GLFW\src\CMakeFiles\glfw.dir\null_window.c.obj: C_COMPILER__glfw_unscanned_Debug D$:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\src\null_window.c || cmake_object_order_depends_target_glfw
+build external\glfw\src\CMakeFiles\glfw.dir\null_window.c.obj: C_COMPILER__glfw_unscanned_Debug D$:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\src\null_window.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -D_CRT_SECURE_NO_WARNINGS -D_GLFW_WIN32 -D_UNICODE
   FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Zi /Ob0 /Od /RTC1 /MP /W3
-  INCLUDES = -ID:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\include -ID:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\src -ID:\BUAS\SelfStudies\DB\DialogueBox\out\build\x64-debug\external\GLFW\src
-  OBJECT_DIR = external\GLFW\src\CMakeFiles\glfw.dir
-  OBJECT_FILE_DIR = external\GLFW\src\CMakeFiles\glfw.dir
-  TARGET_COMPILE_PDB = external\GLFW\src\CMakeFiles\glfw.dir\glfw.pdb
+  INCLUDES = -ID:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\include -ID:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\src -ID:\BUAS\SelfStudies\DB\DialogueBox\out\build\x64-debug\external\glfw\src
+  OBJECT_DIR = external\glfw\src\CMakeFiles\glfw.dir
+  OBJECT_FILE_DIR = external\glfw\src\CMakeFiles\glfw.dir
+  TARGET_COMPILE_PDB = external\glfw\src\CMakeFiles\glfw.dir\glfw.pdb
   TARGET_PDB = lib\glfw3.pdb
 
-build external\GLFW\src\CMakeFiles\glfw.dir\null_joystick.c.obj: C_COMPILER__glfw_unscanned_Debug D$:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\src\null_joystick.c || cmake_object_order_depends_target_glfw
+build external\glfw\src\CMakeFiles\glfw.dir\null_joystick.c.obj: C_COMPILER__glfw_unscanned_Debug D$:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\src\null_joystick.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -D_CRT_SECURE_NO_WARNINGS -D_GLFW_WIN32 -D_UNICODE
   FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Zi /Ob0 /Od /RTC1 /MP /W3
-  INCLUDES = -ID:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\include -ID:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\src -ID:\BUAS\SelfStudies\DB\DialogueBox\out\build\x64-debug\external\GLFW\src
-  OBJECT_DIR = external\GLFW\src\CMakeFiles\glfw.dir
-  OBJECT_FILE_DIR = external\GLFW\src\CMakeFiles\glfw.dir
-  TARGET_COMPILE_PDB = external\GLFW\src\CMakeFiles\glfw.dir\glfw.pdb
+  INCLUDES = -ID:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\include -ID:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\src -ID:\BUAS\SelfStudies\DB\DialogueBox\out\build\x64-debug\external\glfw\src
+  OBJECT_DIR = external\glfw\src\CMakeFiles\glfw.dir
+  OBJECT_FILE_DIR = external\glfw\src\CMakeFiles\glfw.dir
+  TARGET_COMPILE_PDB = external\glfw\src\CMakeFiles\glfw.dir\glfw.pdb
   TARGET_PDB = lib\glfw3.pdb
 
-build external\GLFW\src\CMakeFiles\glfw.dir\win32_module.c.obj: C_COMPILER__glfw_unscanned_Debug D$:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\src\win32_module.c || cmake_object_order_depends_target_glfw
+build external\glfw\src\CMakeFiles\glfw.dir\win32_module.c.obj: C_COMPILER__glfw_unscanned_Debug D$:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\src\win32_module.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -D_CRT_SECURE_NO_WARNINGS -D_GLFW_WIN32 -D_UNICODE
   FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Zi /Ob0 /Od /RTC1 /MP /W3
-  INCLUDES = -ID:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\include -ID:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\src -ID:\BUAS\SelfStudies\DB\DialogueBox\out\build\x64-debug\external\GLFW\src
-  OBJECT_DIR = external\GLFW\src\CMakeFiles\glfw.dir
-  OBJECT_FILE_DIR = external\GLFW\src\CMakeFiles\glfw.dir
-  TARGET_COMPILE_PDB = external\GLFW\src\CMakeFiles\glfw.dir\glfw.pdb
+  INCLUDES = -ID:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\include -ID:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\src -ID:\BUAS\SelfStudies\DB\DialogueBox\out\build\x64-debug\external\glfw\src
+  OBJECT_DIR = external\glfw\src\CMakeFiles\glfw.dir
+  OBJECT_FILE_DIR = external\glfw\src\CMakeFiles\glfw.dir
+  TARGET_COMPILE_PDB = external\glfw\src\CMakeFiles\glfw.dir\glfw.pdb
   TARGET_PDB = lib\glfw3.pdb
 
-build external\GLFW\src\CMakeFiles\glfw.dir\win32_time.c.obj: C_COMPILER__glfw_unscanned_Debug D$:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\src\win32_time.c || cmake_object_order_depends_target_glfw
+build external\glfw\src\CMakeFiles\glfw.dir\win32_time.c.obj: C_COMPILER__glfw_unscanned_Debug D$:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\src\win32_time.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -D_CRT_SECURE_NO_WARNINGS -D_GLFW_WIN32 -D_UNICODE
   FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Zi /Ob0 /Od /RTC1 /MP /W3
-  INCLUDES = -ID:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\include -ID:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\src -ID:\BUAS\SelfStudies\DB\DialogueBox\out\build\x64-debug\external\GLFW\src
-  OBJECT_DIR = external\GLFW\src\CMakeFiles\glfw.dir
-  OBJECT_FILE_DIR = external\GLFW\src\CMakeFiles\glfw.dir
-  TARGET_COMPILE_PDB = external\GLFW\src\CMakeFiles\glfw.dir\glfw.pdb
+  INCLUDES = -ID:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\include -ID:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\src -ID:\BUAS\SelfStudies\DB\DialogueBox\out\build\x64-debug\external\glfw\src
+  OBJECT_DIR = external\glfw\src\CMakeFiles\glfw.dir
+  OBJECT_FILE_DIR = external\glfw\src\CMakeFiles\glfw.dir
+  TARGET_COMPILE_PDB = external\glfw\src\CMakeFiles\glfw.dir\glfw.pdb
   TARGET_PDB = lib\glfw3.pdb
 
-build external\GLFW\src\CMakeFiles\glfw.dir\win32_thread.c.obj: C_COMPILER__glfw_unscanned_Debug D$:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\src\win32_thread.c || cmake_object_order_depends_target_glfw
+build external\glfw\src\CMakeFiles\glfw.dir\win32_thread.c.obj: C_COMPILER__glfw_unscanned_Debug D$:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\src\win32_thread.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -D_CRT_SECURE_NO_WARNINGS -D_GLFW_WIN32 -D_UNICODE
   FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Zi /Ob0 /Od /RTC1 /MP /W3
-  INCLUDES = -ID:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\include -ID:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\src -ID:\BUAS\SelfStudies\DB\DialogueBox\out\build\x64-debug\external\GLFW\src
-  OBJECT_DIR = external\GLFW\src\CMakeFiles\glfw.dir
-  OBJECT_FILE_DIR = external\GLFW\src\CMakeFiles\glfw.dir
-  TARGET_COMPILE_PDB = external\GLFW\src\CMakeFiles\glfw.dir\glfw.pdb
+  INCLUDES = -ID:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\include -ID:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\src -ID:\BUAS\SelfStudies\DB\DialogueBox\out\build\x64-debug\external\glfw\src
+  OBJECT_DIR = external\glfw\src\CMakeFiles\glfw.dir
+  OBJECT_FILE_DIR = external\glfw\src\CMakeFiles\glfw.dir
+  TARGET_COMPILE_PDB = external\glfw\src\CMakeFiles\glfw.dir\glfw.pdb
   TARGET_PDB = lib\glfw3.pdb
 
-build external\GLFW\src\CMakeFiles\glfw.dir\win32_init.c.obj: C_COMPILER__glfw_unscanned_Debug D$:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\src\win32_init.c || cmake_object_order_depends_target_glfw
+build external\glfw\src\CMakeFiles\glfw.dir\win32_init.c.obj: C_COMPILER__glfw_unscanned_Debug D$:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\src\win32_init.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -D_CRT_SECURE_NO_WARNINGS -D_GLFW_WIN32 -D_UNICODE
   FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Zi /Ob0 /Od /RTC1 /MP /W3
-  INCLUDES = -ID:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\include -ID:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\src -ID:\BUAS\SelfStudies\DB\DialogueBox\out\build\x64-debug\external\GLFW\src
-  OBJECT_DIR = external\GLFW\src\CMakeFiles\glfw.dir
-  OBJECT_FILE_DIR = external\GLFW\src\CMakeFiles\glfw.dir
-  TARGET_COMPILE_PDB = external\GLFW\src\CMakeFiles\glfw.dir\glfw.pdb
+  INCLUDES = -ID:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\include -ID:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\src -ID:\BUAS\SelfStudies\DB\DialogueBox\out\build\x64-debug\external\glfw\src
+  OBJECT_DIR = external\glfw\src\CMakeFiles\glfw.dir
+  OBJECT_FILE_DIR = external\glfw\src\CMakeFiles\glfw.dir
+  TARGET_COMPILE_PDB = external\glfw\src\CMakeFiles\glfw.dir\glfw.pdb
   TARGET_PDB = lib\glfw3.pdb
 
-build external\GLFW\src\CMakeFiles\glfw.dir\win32_joystick.c.obj: C_COMPILER__glfw_unscanned_Debug D$:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\src\win32_joystick.c || cmake_object_order_depends_target_glfw
+build external\glfw\src\CMakeFiles\glfw.dir\win32_joystick.c.obj: C_COMPILER__glfw_unscanned_Debug D$:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\src\win32_joystick.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -D_CRT_SECURE_NO_WARNINGS -D_GLFW_WIN32 -D_UNICODE
   FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Zi /Ob0 /Od /RTC1 /MP /W3
-  INCLUDES = -ID:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\include -ID:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\src -ID:\BUAS\SelfStudies\DB\DialogueBox\out\build\x64-debug\external\GLFW\src
-  OBJECT_DIR = external\GLFW\src\CMakeFiles\glfw.dir
-  OBJECT_FILE_DIR = external\GLFW\src\CMakeFiles\glfw.dir
-  TARGET_COMPILE_PDB = external\GLFW\src\CMakeFiles\glfw.dir\glfw.pdb
+  INCLUDES = -ID:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\include -ID:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\src -ID:\BUAS\SelfStudies\DB\DialogueBox\out\build\x64-debug\external\glfw\src
+  OBJECT_DIR = external\glfw\src\CMakeFiles\glfw.dir
+  OBJECT_FILE_DIR = external\glfw\src\CMakeFiles\glfw.dir
+  TARGET_COMPILE_PDB = external\glfw\src\CMakeFiles\glfw.dir\glfw.pdb
   TARGET_PDB = lib\glfw3.pdb
 
-build external\GLFW\src\CMakeFiles\glfw.dir\win32_monitor.c.obj: C_COMPILER__glfw_unscanned_Debug D$:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\src\win32_monitor.c || cmake_object_order_depends_target_glfw
+build external\glfw\src\CMakeFiles\glfw.dir\win32_monitor.c.obj: C_COMPILER__glfw_unscanned_Debug D$:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\src\win32_monitor.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -D_CRT_SECURE_NO_WARNINGS -D_GLFW_WIN32 -D_UNICODE
   FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Zi /Ob0 /Od /RTC1 /MP /W3
-  INCLUDES = -ID:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\include -ID:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\src -ID:\BUAS\SelfStudies\DB\DialogueBox\out\build\x64-debug\external\GLFW\src
-  OBJECT_DIR = external\GLFW\src\CMakeFiles\glfw.dir
-  OBJECT_FILE_DIR = external\GLFW\src\CMakeFiles\glfw.dir
-  TARGET_COMPILE_PDB = external\GLFW\src\CMakeFiles\glfw.dir\glfw.pdb
+  INCLUDES = -ID:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\include -ID:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\src -ID:\BUAS\SelfStudies\DB\DialogueBox\out\build\x64-debug\external\glfw\src
+  OBJECT_DIR = external\glfw\src\CMakeFiles\glfw.dir
+  OBJECT_FILE_DIR = external\glfw\src\CMakeFiles\glfw.dir
+  TARGET_COMPILE_PDB = external\glfw\src\CMakeFiles\glfw.dir\glfw.pdb
   TARGET_PDB = lib\glfw3.pdb
 
-build external\GLFW\src\CMakeFiles\glfw.dir\win32_window.c.obj: C_COMPILER__glfw_unscanned_Debug D$:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\src\win32_window.c || cmake_object_order_depends_target_glfw
+build external\glfw\src\CMakeFiles\glfw.dir\win32_window.c.obj: C_COMPILER__glfw_unscanned_Debug D$:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\src\win32_window.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -D_CRT_SECURE_NO_WARNINGS -D_GLFW_WIN32 -D_UNICODE
   FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Zi /Ob0 /Od /RTC1 /MP /W3
-  INCLUDES = -ID:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\include -ID:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\src -ID:\BUAS\SelfStudies\DB\DialogueBox\out\build\x64-debug\external\GLFW\src
-  OBJECT_DIR = external\GLFW\src\CMakeFiles\glfw.dir
-  OBJECT_FILE_DIR = external\GLFW\src\CMakeFiles\glfw.dir
-  TARGET_COMPILE_PDB = external\GLFW\src\CMakeFiles\glfw.dir\glfw.pdb
+  INCLUDES = -ID:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\include -ID:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\src -ID:\BUAS\SelfStudies\DB\DialogueBox\out\build\x64-debug\external\glfw\src
+  OBJECT_DIR = external\glfw\src\CMakeFiles\glfw.dir
+  OBJECT_FILE_DIR = external\glfw\src\CMakeFiles\glfw.dir
+  TARGET_COMPILE_PDB = external\glfw\src\CMakeFiles\glfw.dir\glfw.pdb
   TARGET_PDB = lib\glfw3.pdb
 
-build external\GLFW\src\CMakeFiles\glfw.dir\wgl_context.c.obj: C_COMPILER__glfw_unscanned_Debug D$:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\src\wgl_context.c || cmake_object_order_depends_target_glfw
+build external\glfw\src\CMakeFiles\glfw.dir\wgl_context.c.obj: C_COMPILER__glfw_unscanned_Debug D$:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\src\wgl_context.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -D_CRT_SECURE_NO_WARNINGS -D_GLFW_WIN32 -D_UNICODE
   FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Zi /Ob0 /Od /RTC1 /MP /W3
-  INCLUDES = -ID:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\include -ID:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\src -ID:\BUAS\SelfStudies\DB\DialogueBox\out\build\x64-debug\external\GLFW\src
-  OBJECT_DIR = external\GLFW\src\CMakeFiles\glfw.dir
-  OBJECT_FILE_DIR = external\GLFW\src\CMakeFiles\glfw.dir
-  TARGET_COMPILE_PDB = external\GLFW\src\CMakeFiles\glfw.dir\glfw.pdb
+  INCLUDES = -ID:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\include -ID:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\src -ID:\BUAS\SelfStudies\DB\DialogueBox\out\build\x64-debug\external\glfw\src
+  OBJECT_DIR = external\glfw\src\CMakeFiles\glfw.dir
+  OBJECT_FILE_DIR = external\glfw\src\CMakeFiles\glfw.dir
+  TARGET_COMPILE_PDB = external\glfw\src\CMakeFiles\glfw.dir\glfw.pdb
   TARGET_PDB = lib\glfw3.pdb
 
 
@@ -525,13 +525,13 @@ build external\GLFW\src\CMakeFiles\glfw.dir\wgl_context.c.obj: C_COMPILER__glfw_
 #############################################
 # Link the static library lib\glfw3.lib
 
-build lib\glfw3.lib: C_STATIC_LIBRARY_LINKER__glfw_Debug external\GLFW\src\CMakeFiles\glfw.dir\context.c.obj external\GLFW\src\CMakeFiles\glfw.dir\init.c.obj external\GLFW\src\CMakeFiles\glfw.dir\input.c.obj external\GLFW\src\CMakeFiles\glfw.dir\monitor.c.obj external\GLFW\src\CMakeFiles\glfw.dir\platform.c.obj external\GLFW\src\CMakeFiles\glfw.dir\vulkan.c.obj external\GLFW\src\CMakeFiles\glfw.dir\window.c.obj external\GLFW\src\CMakeFiles\glfw.dir\egl_context.c.obj external\GLFW\src\CMakeFiles\glfw.dir\osmesa_context.c.obj external\GLFW\src\CMakeFiles\glfw.dir\null_init.c.obj external\GLFW\src\CMakeFiles\glfw.dir\null_monitor.c.obj external\GLFW\src\CMakeFiles\glfw.dir\null_window.c.obj external\GLFW\src\CMakeFiles\glfw.dir\null_joystick.c.obj external\GLFW\src\CMakeFiles\glfw.dir\win32_module.c.obj external\GLFW\src\CMakeFiles\glfw.dir\win32_time.c.obj external\GLFW\src\CMakeFiles\glfw.dir\win32_thread.c.obj external\GLFW\src\CMakeFiles\glfw.dir\win32_init.c.obj external\GLFW\src\CMakeFiles\glfw.dir\win32_joystick.c.obj external\GLFW\src\CMakeFiles\glfw.dir\win32_monitor.c.obj external\GLFW\src\CMakeFiles\glfw.dir\win32_window.c.obj external\GLFW\src\CMakeFiles\glfw.dir\wgl_context.c.obj
+build lib\glfw3.lib: C_STATIC_LIBRARY_LINKER__glfw_Debug external\glfw\src\CMakeFiles\glfw.dir\context.c.obj external\glfw\src\CMakeFiles\glfw.dir\init.c.obj external\glfw\src\CMakeFiles\glfw.dir\input.c.obj external\glfw\src\CMakeFiles\glfw.dir\monitor.c.obj external\glfw\src\CMakeFiles\glfw.dir\platform.c.obj external\glfw\src\CMakeFiles\glfw.dir\vulkan.c.obj external\glfw\src\CMakeFiles\glfw.dir\window.c.obj external\glfw\src\CMakeFiles\glfw.dir\egl_context.c.obj external\glfw\src\CMakeFiles\glfw.dir\osmesa_context.c.obj external\glfw\src\CMakeFiles\glfw.dir\null_init.c.obj external\glfw\src\CMakeFiles\glfw.dir\null_monitor.c.obj external\glfw\src\CMakeFiles\glfw.dir\null_window.c.obj external\glfw\src\CMakeFiles\glfw.dir\null_joystick.c.obj external\glfw\src\CMakeFiles\glfw.dir\win32_module.c.obj external\glfw\src\CMakeFiles\glfw.dir\win32_time.c.obj external\glfw\src\CMakeFiles\glfw.dir\win32_thread.c.obj external\glfw\src\CMakeFiles\glfw.dir\win32_init.c.obj external\glfw\src\CMakeFiles\glfw.dir\win32_joystick.c.obj external\glfw\src\CMakeFiles\glfw.dir\win32_monitor.c.obj external\glfw\src\CMakeFiles\glfw.dir\win32_window.c.obj external\glfw\src\CMakeFiles\glfw.dir\wgl_context.c.obj
   LANGUAGE_COMPILE_FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Zi /Ob0 /Od /RTC1
   LINK_FLAGS = /machine:x64
-  OBJECT_DIR = external\GLFW\src\CMakeFiles\glfw.dir
+  OBJECT_DIR = external\glfw\src\CMakeFiles\glfw.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
-  TARGET_COMPILE_PDB = external\GLFW\src\CMakeFiles\glfw.dir\glfw.pdb
+  TARGET_COMPILE_PDB = external\glfw\src\CMakeFiles\glfw.dir\glfw.pdb
   TARGET_FILE = lib\glfw3.lib
   TARGET_PDB = lib\glfw3.pdb
 
@@ -539,36 +539,36 @@ build lib\glfw3.lib: C_STATIC_LIBRARY_LINKER__glfw_Debug external\GLFW\src\CMake
 #############################################
 # Utility command for update_mappings
 
-build external\GLFW\src\update_mappings: phony external\GLFW\src\CMakeFiles\update_mappings
+build external\glfw\src\update_mappings: phony external\glfw\src\CMakeFiles\update_mappings
 
 
 #############################################
 # Utility command for edit_cache
 
-build external\GLFW\src\CMakeFiles\edit_cache.util: CUSTOM_COMMAND
-  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D D:\BUAS\SelfStudies\DB\DialogueBox\out\build\x64-debug\external\GLFW\src && "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
+build external\glfw\src\CMakeFiles\edit_cache.util: CUSTOM_COMMAND
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D D:\BUAS\SelfStudies\DB\DialogueBox\out\build\x64-debug\external\glfw\src && "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
   DESC = No interactive CMake dialog available...
   restat = 1
 
-build external\GLFW\src\edit_cache: phony external\GLFW\src\CMakeFiles\edit_cache.util
+build external\glfw\src\edit_cache: phony external\glfw\src\CMakeFiles\edit_cache.util
 
 
 #############################################
 # Utility command for rebuild_cache
 
-build external\GLFW\src\CMakeFiles\rebuild_cache.util: CUSTOM_COMMAND
-  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D D:\BUAS\SelfStudies\DB\DialogueBox\out\build\x64-debug\external\GLFW\src && "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" --regenerate-during-build -SD:\BUAS\SelfStudies\DB\DialogueBox -BD:\BUAS\SelfStudies\DB\DialogueBox\out\build\x64-debug"
+build external\glfw\src\CMakeFiles\rebuild_cache.util: CUSTOM_COMMAND
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D D:\BUAS\SelfStudies\DB\DialogueBox\out\build\x64-debug\external\glfw\src && "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" --regenerate-during-build -SD:\BUAS\SelfStudies\DB\DialogueBox -BD:\BUAS\SelfStudies\DB\DialogueBox\out\build\x64-debug"
   DESC = Running CMake to regenerate build system...
   pool = console
   restat = 1
 
-build external\GLFW\src\rebuild_cache: phony external\GLFW\src\CMakeFiles\rebuild_cache.util
+build external\glfw\src\rebuild_cache: phony external\glfw\src\CMakeFiles\rebuild_cache.util
 
 
 #############################################
-# Custom command for external\GLFW\src\CMakeFiles\update_mappings
+# Custom command for external\glfw\src\CMakeFiles\update_mappings
 
-build external\GLFW\src\CMakeFiles\update_mappings | ${cmake_ninja_workdir}external\GLFW\src\CMakeFiles\update_mappings: CUSTOM_COMMAND
+build external\glfw\src\CMakeFiles\update_mappings | ${cmake_ninja_workdir}external\glfw\src\CMakeFiles\update_mappings: CUSTOM_COMMAND
   COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D D:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\src && "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -P D:/BUAS/SelfStudies/DB/DialogueBox/external/glfw/CMake/GenerateMappings.cmake mappings.h.in mappings.h"
   DESC = Updating gamepad mappings from upstream repository
 
@@ -634,6 +634,14 @@ build DiaBolic\CMakeFiles\DiaBolic.dir\src\main.cpp.obj: CXX_COMPILER__DiaBolic_
   TARGET_COMPILE_PDB = DiaBolic\CMakeFiles\DiaBolic.dir\
   TARGET_PDB = bin\DiaBolic.pdb
 
+build DiaBolic\CMakeFiles\DiaBolic.dir\src\pch.cpp.obj: CXX_COMPILER__DiaBolic_unscanned_Debug D$:\BUAS\SelfStudies\DB\DialogueBox\DiaBolic\src\pch.cpp || cmake_object_order_depends_target_DiaBolic
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 /MP /Yc"pch.h"
+  INCLUDES = -ID:\BUAS\SelfStudies\DB\DialogueBox\DiaBolic\inc -ID:\BUAS\SelfStudies\DB\DialogueBox\external\DirectXTex\DirectXTex
+  OBJECT_DIR = DiaBolic\CMakeFiles\DiaBolic.dir
+  OBJECT_FILE_DIR = DiaBolic\CMakeFiles\DiaBolic.dir\src
+  TARGET_COMPILE_PDB = DiaBolic\CMakeFiles\DiaBolic.dir\
+  TARGET_PDB = bin\DiaBolic.pdb
+
 build DiaBolic\CMakeFiles\DiaBolic.dir\src\renderer.cpp.obj: CXX_COMPILER__DiaBolic_unscanned_Debug D$:\BUAS\SelfStudies\DB\DialogueBox\DiaBolic\src\renderer.cpp || cmake_object_order_depends_target_DiaBolic
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 /MP
   INCLUDES = -ID:\BUAS\SelfStudies\DB\DialogueBox\DiaBolic\inc -ID:\BUAS\SelfStudies\DB\DialogueBox\external\DirectXTex\DirectXTex
@@ -674,10 +682,10 @@ build DiaBolic\CMakeFiles\DiaBolic.dir\src\pipelines\ui_pipeline.cpp.obj: CXX_CO
 #############################################
 # Link the executable bin\DiaBolic.exe
 
-build bin\DiaBolic.exe: CXX_EXECUTABLE_LINKER__DiaBolic_Debug DiaBolic\CMakeFiles\DiaBolic.dir\src\camera.cpp.obj DiaBolic\CMakeFiles\DiaBolic.dir\src\command_queue.cpp.obj DiaBolic\CMakeFiles\DiaBolic.dir\src\dialogue_sample.cpp.obj DiaBolic\CMakeFiles\DiaBolic.dir\src\dx12_helpers.cpp.obj DiaBolic\CMakeFiles\DiaBolic.dir\src\glfw_app.cpp.obj DiaBolic\CMakeFiles\DiaBolic.dir\src\main.cpp.obj DiaBolic\CMakeFiles\DiaBolic.dir\src\renderer.cpp.obj DiaBolic\CMakeFiles\DiaBolic.dir\src\resource_util.cpp.obj DiaBolic\CMakeFiles\DiaBolic.dir\src\pipelines\geometry_pipeline.cpp.obj DiaBolic\CMakeFiles\DiaBolic.dir\src\pipelines\ui_pipeline.cpp.obj | lib\DirectXTex.lib || lib\DirectXTex.lib
+build bin\DiaBolic.exe: CXX_EXECUTABLE_LINKER__DiaBolic_Debug DiaBolic\CMakeFiles\DiaBolic.dir\src\camera.cpp.obj DiaBolic\CMakeFiles\DiaBolic.dir\src\command_queue.cpp.obj DiaBolic\CMakeFiles\DiaBolic.dir\src\dialogue_sample.cpp.obj DiaBolic\CMakeFiles\DiaBolic.dir\src\dx12_helpers.cpp.obj DiaBolic\CMakeFiles\DiaBolic.dir\src\glfw_app.cpp.obj DiaBolic\CMakeFiles\DiaBolic.dir\src\main.cpp.obj DiaBolic\CMakeFiles\DiaBolic.dir\src\pch.cpp.obj DiaBolic\CMakeFiles\DiaBolic.dir\src\renderer.cpp.obj DiaBolic\CMakeFiles\DiaBolic.dir\src\resource_util.cpp.obj DiaBolic\CMakeFiles\DiaBolic.dir\src\pipelines\geometry_pipeline.cpp.obj DiaBolic\CMakeFiles\DiaBolic.dir\src\pipelines\ui_pipeline.cpp.obj | lib\DirectXTex.lib || lib\DirectXTex.lib
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
   LINK_FLAGS = /machine:x64 /debug /INCREMENTAL /subsystem:windows
-  LINK_LIBRARIES = lib\DirectXTex.lib  d3d12.lib  dxgi.lib  D3DCompiler.lib  glfw3.lib  dxguid.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
+  LINK_LIBRARIES = lib\DirectXTex.lib  GLFW.lib  d3d12.lib  dxgi.lib  D3DCompiler.lib  glfw3.lib  dxguid.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
   OBJECT_DIR = DiaBolic\CMakeFiles\DiaBolic.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
@@ -724,7 +732,7 @@ build glfw: phony lib\glfw3.lib
 
 build glfw3.lib: phony lib\glfw3.lib
 
-build update_mappings: phony external\GLFW\src\update_mappings
+build update_mappings: phony external\glfw\src\update_mappings
 
 # =============================================================================
 # Folder targets.
@@ -734,7 +742,7 @@ build update_mappings: phony external\GLFW\src\update_mappings
 #############################################
 # Folder: D:/BUAS/SelfStudies/DB/DialogueBox/out/build/x64-debug
 
-build all: phony external\DirectXTex\all external\GLFW\all DiaBolic\all
+build all: phony external\DirectXTex\all external\glfw\all DiaBolic\all
 
 # =============================================================================
 
@@ -753,16 +761,16 @@ build external\DirectXTex\all: phony lib\DirectXTex.lib
 # =============================================================================
 
 #############################################
-# Folder: D:/BUAS/SelfStudies/DB/DialogueBox/out/build/x64-debug/external/GLFW
+# Folder: D:/BUAS/SelfStudies/DB/DialogueBox/out/build/x64-debug/external/glfw
 
-build external\GLFW\all: phony external\GLFW\src\all
+build external\glfw\all: phony external\glfw\src\all
 
 # =============================================================================
 
 #############################################
-# Folder: D:/BUAS/SelfStudies/DB/DialogueBox/out/build/x64-debug/external/GLFW/src
+# Folder: D:/BUAS/SelfStudies/DB/DialogueBox/out/build/x64-debug/external/glfw/src
 
-build external\GLFW\src\all: phony lib\glfw3.lib
+build external\glfw\src\all: phony lib\glfw3.lib
 
 # =============================================================================
 # Built-in targets
@@ -771,14 +779,14 @@ build external\GLFW\src\all: phony lib\glfw3.lib
 #############################################
 # Re-run CMake if any of its inputs changed.
 
-build build.ninja: RERUN_CMAKE | C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\BasicConfigVersion-SameMajorVersion.cmake.in C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeCInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeCXXInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeCommonLanguageInclude.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeDependentOption.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeGenericSystem.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeInitializeConfigs.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeLanguageInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakePackageConfigHelpers.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeRCInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeSystemSpecificInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeSystemSpecificInitialize.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CheckCSourceCompiles.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CheckIncludeFile.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CheckLibraryExists.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\CMakeCommonCompilerMacros.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\MSVC-C.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\MSVC-CXX.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\MSVC.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\FindPackageHandleStandardArgs.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\FindPackageMessage.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\FindThreads.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\GNUInstallDirs.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Internal\CheckSourceCompiles.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Platform\Windows-Initialize.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Platform\Windows-MSVC-C.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Platform\Windows-MSVC-CXX.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Platform\Windows-MSVC.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Platform\Windows.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Platform\WindowsPaths.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\WriteBasicConfigVersionFile.cmake CMakeCache.txt CMakeFiles\3.29.5-msvc4\CMakeCCompiler.cmake CMakeFiles\3.29.5-msvc4\CMakeCXXCompiler.cmake CMakeFiles\3.29.5-msvc4\CMakeRCCompiler.cmake CMakeFiles\3.29.5-msvc4\CMakeSystem.cmake D$:\BUAS\SelfStudies\DB\DialogueBox\CMakeLists.txt D$:\BUAS\SelfStudies\DB\DialogueBox\DiaBolic\CMakeLists.txt D$:\BUAS\SelfStudies\DB\DialogueBox\external\DirectXTex\CMakeLists.txt D$:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\CMakeLists.txt D$:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\CMake\glfw3.pc.in D$:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\CMake\glfw3Config.cmake.in D$:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\src\CMakeLists.txt
+build build.ninja: RERUN_CMAKE | C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\BasicConfigVersion-SameMajorVersion.cmake.in C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeCCompiler.cmake.in C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeCCompilerABI.c C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeCInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeCXXCompiler.cmake.in C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeCXXCompilerABI.cpp C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeCXXInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeCommonLanguageInclude.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeCompilerIdDetection.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeDependentOption.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeDetermineCCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeDetermineCXXCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeDetermineCompileFeatures.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeDetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeDetermineCompilerABI.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeDetermineCompilerId.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeDetermineRCCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeDetermineSystem.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeFindBinUtils.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeGenericSystem.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeInitializeConfigs.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeLanguageInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakePackageConfigHelpers.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeParseImplicitIncludeInfo.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeParseImplicitLinkInfo.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeParseLibraryArchitecture.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeRCCompiler.cmake.in C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeRCInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeSystem.cmake.in C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeSystemSpecificInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeSystemSpecificInitialize.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeTestCCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeTestCXXCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeTestCompilerCommon.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeTestRCCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CheckCSourceCompiles.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CheckIncludeFile.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CheckLibraryExists.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\ADSP-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\ARMCC-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\ARMClang-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\AppleClang-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\Borland-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\Bruce-C-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\CMakeCommonCompilerMacros.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\Clang-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\Clang-DetermineCompilerInternal.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\Compaq-C-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\Compaq-CXX-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\Cray-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\CrayClang-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\Embarcadero-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\Fujitsu-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\FujitsuClang-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\GHS-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\GNU-C-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\GNU-CXX-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\HP-C-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\HP-CXX-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\IAR-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\IBMCPP-C-DetermineVersionInternal.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\IBMCPP-CXX-DetermineVersionInternal.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\IBMClang-C-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\IBMClang-CXX-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\Intel-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\IntelLLVM-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\LCC-C-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\LCC-CXX-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\MSVC-C.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\MSVC-CXX.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\MSVC-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\MSVC.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\NVHPC-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\NVIDIA-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\OpenWatcom-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\OrangeC-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\PGI-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\PathScale-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\SCO-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\SDCC-C-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\SunPro-C-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\SunPro-CXX-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\TI-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\TIClang-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\Tasking-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\TinyCC-C-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\VisualAge-C-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\VisualAge-CXX-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\Watcom-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\XL-C-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\XL-CXX-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\XLClang-C-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\XLClang-CXX-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\zOS-C-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\zOS-CXX-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\FindPackageHandleStandardArgs.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\FindPackageMessage.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\FindThreads.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\GNUInstallDirs.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Internal\CMakeDetermineLinkerId.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Internal\CheckSourceCompiles.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Internal\FeatureTesting.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Platform\Windows-Determine-CXX.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Platform\Windows-Initialize.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Platform\Windows-MSVC-C.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Platform\Windows-MSVC-CXX.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Platform\Windows-MSVC.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Platform\Windows.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Platform\WindowsPaths.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\WriteBasicConfigVersionFile.cmake CMakeCache.txt CMakeFiles\3.29.5-msvc4\CMakeCCompiler.cmake CMakeFiles\3.29.5-msvc4\CMakeCXXCompiler.cmake CMakeFiles\3.29.5-msvc4\CMakeRCCompiler.cmake CMakeFiles\3.29.5-msvc4\CMakeSystem.cmake D$:\BUAS\SelfStudies\DB\DialogueBox\CMakeLists.txt D$:\BUAS\SelfStudies\DB\DialogueBox\DiaBolic\CMakeLists.txt D$:\BUAS\SelfStudies\DB\DialogueBox\external\DirectXTex\CMakeLists.txt D$:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\CMakeLists.txt D$:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\CMake\glfw3.pc.in D$:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\CMake\glfw3Config.cmake.in D$:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\src\CMakeLists.txt
   pool = console
 
 
 #############################################
 # A missing CMake input file is not an error.
 
-build C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\BasicConfigVersion-SameMajorVersion.cmake.in C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeCInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeCXXInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeCommonLanguageInclude.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeDependentOption.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeGenericSystem.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeInitializeConfigs.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeLanguageInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakePackageConfigHelpers.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeRCInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeSystemSpecificInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeSystemSpecificInitialize.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CheckCSourceCompiles.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CheckIncludeFile.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CheckLibraryExists.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\CMakeCommonCompilerMacros.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\MSVC-C.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\MSVC-CXX.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\MSVC.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\FindPackageHandleStandardArgs.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\FindPackageMessage.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\FindThreads.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\GNUInstallDirs.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Internal\CheckSourceCompiles.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Platform\Windows-Initialize.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Platform\Windows-MSVC-C.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Platform\Windows-MSVC-CXX.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Platform\Windows-MSVC.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Platform\Windows.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Platform\WindowsPaths.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\WriteBasicConfigVersionFile.cmake CMakeCache.txt CMakeFiles\3.29.5-msvc4\CMakeCCompiler.cmake CMakeFiles\3.29.5-msvc4\CMakeCXXCompiler.cmake CMakeFiles\3.29.5-msvc4\CMakeRCCompiler.cmake CMakeFiles\3.29.5-msvc4\CMakeSystem.cmake D$:\BUAS\SelfStudies\DB\DialogueBox\CMakeLists.txt D$:\BUAS\SelfStudies\DB\DialogueBox\DiaBolic\CMakeLists.txt D$:\BUAS\SelfStudies\DB\DialogueBox\external\DirectXTex\CMakeLists.txt D$:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\CMakeLists.txt D$:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\CMake\glfw3.pc.in D$:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\CMake\glfw3Config.cmake.in D$:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\src\CMakeLists.txt: phony
+build C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\BasicConfigVersion-SameMajorVersion.cmake.in C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeCCompiler.cmake.in C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeCCompilerABI.c C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeCInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeCXXCompiler.cmake.in C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeCXXCompilerABI.cpp C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeCXXInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeCommonLanguageInclude.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeCompilerIdDetection.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeDependentOption.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeDetermineCCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeDetermineCXXCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeDetermineCompileFeatures.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeDetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeDetermineCompilerABI.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeDetermineCompilerId.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeDetermineRCCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeDetermineSystem.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeFindBinUtils.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeGenericSystem.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeInitializeConfigs.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeLanguageInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakePackageConfigHelpers.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeParseImplicitIncludeInfo.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeParseImplicitLinkInfo.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeParseLibraryArchitecture.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeRCCompiler.cmake.in C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeRCInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeSystem.cmake.in C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeSystemSpecificInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeSystemSpecificInitialize.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeTestCCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeTestCXXCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeTestCompilerCommon.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CMakeTestRCCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CheckCSourceCompiles.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CheckIncludeFile.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\CheckLibraryExists.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\ADSP-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\ARMCC-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\ARMClang-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\AppleClang-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\Borland-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\Bruce-C-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\CMakeCommonCompilerMacros.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\Clang-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\Clang-DetermineCompilerInternal.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\Compaq-C-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\Compaq-CXX-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\Cray-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\CrayClang-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\Embarcadero-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\Fujitsu-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\FujitsuClang-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\GHS-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\GNU-C-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\GNU-CXX-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\HP-C-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\HP-CXX-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\IAR-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\IBMCPP-C-DetermineVersionInternal.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\IBMCPP-CXX-DetermineVersionInternal.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\IBMClang-C-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\IBMClang-CXX-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\Intel-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\IntelLLVM-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\LCC-C-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\LCC-CXX-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\MSVC-C.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\MSVC-CXX.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\MSVC-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\MSVC.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\NVHPC-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\NVIDIA-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\OpenWatcom-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\OrangeC-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\PGI-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\PathScale-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\SCO-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\SDCC-C-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\SunPro-C-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\SunPro-CXX-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\TI-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\TIClang-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\Tasking-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\TinyCC-C-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\VisualAge-C-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\VisualAge-CXX-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\Watcom-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\XL-C-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\XL-CXX-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\XLClang-C-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\XLClang-CXX-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\zOS-C-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Compiler\zOS-CXX-DetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\FindPackageHandleStandardArgs.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\FindPackageMessage.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\FindThreads.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\GNUInstallDirs.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Internal\CMakeDetermineLinkerId.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Internal\CheckSourceCompiles.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Internal\FeatureTesting.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Platform\Windows-Determine-CXX.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Platform\Windows-Initialize.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Platform\Windows-MSVC-C.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Platform\Windows-MSVC-CXX.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Platform\Windows-MSVC.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Platform\Windows.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\Platform\WindowsPaths.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.29\Modules\WriteBasicConfigVersionFile.cmake CMakeCache.txt CMakeFiles\3.29.5-msvc4\CMakeCCompiler.cmake CMakeFiles\3.29.5-msvc4\CMakeCXXCompiler.cmake CMakeFiles\3.29.5-msvc4\CMakeRCCompiler.cmake CMakeFiles\3.29.5-msvc4\CMakeSystem.cmake D$:\BUAS\SelfStudies\DB\DialogueBox\CMakeLists.txt D$:\BUAS\SelfStudies\DB\DialogueBox\DiaBolic\CMakeLists.txt D$:\BUAS\SelfStudies\DB\DialogueBox\external\DirectXTex\CMakeLists.txt D$:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\CMakeLists.txt D$:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\CMake\glfw3.pc.in D$:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\CMake\glfw3Config.cmake.in D$:\BUAS\SelfStudies\DB\DialogueBox\external\glfw\src\CMakeLists.txt: phony
 
 
 #############################################

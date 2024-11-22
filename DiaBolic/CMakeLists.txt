@@ -20,7 +20,8 @@ set( SRC_FILES
 	src/dx12_helpers.cpp
 	src/glfw_app.cpp
 	src/main.cpp
-	src/pch.hpp
+	src/pch.h
+	src/pch.cpp
 	src/renderer.cpp
 	src/resource_util.cpp
 	src/pipelines/geometry_pipeline.cpp
@@ -41,12 +42,12 @@ set_source_files_properties( ${SHADER_FILES}
         VS_SHADER_FLAGS $<$<OR:$<CONFIG:Debug>>:-Qembed_debug>
 )
 
-set_source_files_properties( "shaders/uber_vs.hlsl" 
+set_source_files_properties( shaders/uber_vs.hlsl 
     PROPERTIES 
         VS_SHADER_TYPE Vertex
 )
 
-set_source_files_properties( "shaders/uber_ps.hlsl"
+set_source_files_properties( shaders/uber_ps.hlsl
     PROPERTIES 
         VS_SHADER_TYPE Pixel
 )
@@ -55,6 +56,7 @@ add_executable( DiaBolic WIN32
     ${HEADER_FILES}
     ${SRC_FILES}
     ${SHADER_FILES}
+	src/pch.cpp
 )
 
 target_include_directories( DiaBolic
@@ -62,23 +64,24 @@ target_include_directories( DiaBolic
 )
 
 target_link_libraries( DiaBolic
-    DirectXTex
-	d3d12.lib
-	dxgi.lib
-	D3DCompiler.lib
-	glfw3.lib
-	dxguid.lib
+    PRIVATE DirectXTex
+	PRIVATE GLFW
+	PRIVATE d3d12.lib
+	PRIVATE dxgi.lib
+	PRIVATE D3DCompiler.lib
+	PRIVATE glfw3.lib
+	PRIVATE dxguid.lib
 )
 
 # Enable precompiled header files.
 set_source_files_properties( ${SOURCE_FILES} 
     PROPERTIES 
-        COMPILE_FLAGS /Yu"pch.hpp"
+        COMPILE_FLAGS /Yu"pch.h"
 )
 
 set_source_files_properties( src/pch.cpp
     PROPERTIES
-        COMPILE_FLAGS /Yc"pch.hpp"
+        COMPILE_FLAGS /Yc"pch.h"
 )
 
 # Set Local Debugger Settings (Command Arguments and Environment Variables)

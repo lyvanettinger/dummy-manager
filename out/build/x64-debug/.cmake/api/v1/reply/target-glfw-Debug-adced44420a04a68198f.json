@@ -157,7 +157,7 @@
 				},
 				{
 					"backtrace" : 9,
-					"path" : "D:/BUAS/SelfStudies/DB/DialogueBox/out/build/x64-debug/external/GLFW/src"
+					"path" : "D:/BUAS/SelfStudies/DB/DialogueBox/out/build/x64-debug/external/glfw/src"
 				}
 			],
 			"language" : "C",
@@ -199,12 +199,12 @@
 	{
 		"name" : "GLFW3"
 	},
-	"id" : "glfw::@39536130fdb1aa6d70f0",
+	"id" : "glfw::@ca12bac854c2ac6b2230",
 	"name" : "glfw",
 	"nameOnDisk" : "glfw3.lib",
 	"paths" : 
 	{
-		"build" : "external/GLFW/src",
+		"build" : "external/glfw/src",
 		"source" : "external/glfw/src"
 	},
 	"sourceGroups" : 

@@ -1,5 +1,3 @@
-#include "pch.hpp"
-
 #include "glfw_app.hpp"
 #include "renderer.hpp"
 #include "dialogue_sample.hpp"

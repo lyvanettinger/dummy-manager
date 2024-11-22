@@ -1,5 +1,3 @@
-#include "pch.hpp"
-
 #include "command_queue.hpp"
 
 #include "dx12_helpers.hpp"

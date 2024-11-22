@@ -1,5 +1,3 @@
-#include "pch.hpp"
-
 #include "dx12_helpers.hpp"
 
 void Util::GetHardwareAdapter(

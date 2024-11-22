@@ -4,8 +4,6 @@
 *     - https://www.3dgep.com/category/graphics-programming/directx/
 */
 
-#include "pch.hpp"
-
 #include "renderer.hpp"
 
 #include "dx12_helpers.hpp"

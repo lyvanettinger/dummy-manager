@@ -8,7 +8,7 @@
 	"installers" : [],
 	"paths" : 
 	{
-		"build" : "external/GLFW/src",
-		"source" : "external/glfw/src"
+		"build" : "external/glfw",
+		"source" : "external/glfw"
 	}
 }
