@@ -1,0 +1,14 @@
+D:/BUAS/SelfStudies/DB/DialogueBox/out/build/x64-debug/CMakeFiles/edit_cache.dir
+D:/BUAS/SelfStudies/DB/DialogueBox/out/build/x64-debug/CMakeFiles/rebuild_cache.dir
+D:/BUAS/SelfStudies/DB/DialogueBox/out/build/x64-debug/external/DirectXTex/CMakeFiles/DirectXTex.dir
+D:/BUAS/SelfStudies/DB/DialogueBox/out/build/x64-debug/external/DirectXTex/CMakeFiles/edit_cache.dir
+D:/BUAS/SelfStudies/DB/DialogueBox/out/build/x64-debug/external/DirectXTex/CMakeFiles/rebuild_cache.dir
+D:/BUAS/SelfStudies/DB/DialogueBox/out/build/x64-debug/external/GLFW/CMakeFiles/edit_cache.dir
+D:/BUAS/SelfStudies/DB/DialogueBox/out/build/x64-debug/external/GLFW/CMakeFiles/rebuild_cache.dir
+D:/BUAS/SelfStudies/DB/DialogueBox/out/build/x64-debug/external/GLFW/src/CMakeFiles/glfw.dir
+D:/BUAS/SelfStudies/DB/DialogueBox/out/build/x64-debug/external/GLFW/src/CMakeFiles/update_mappings.dir
+D:/BUAS/SelfStudies/DB/DialogueBox/out/build/x64-debug/external/GLFW/src/CMakeFiles/edit_cache.dir
+D:/BUAS/SelfStudies/DB/DialogueBox/out/build/x64-debug/external/GLFW/src/CMakeFiles/rebuild_cache.dir
+D:/BUAS/SelfStudies/DB/DialogueBox/out/build/x64-debug/DiaBolic/CMakeFiles/DiaBolic.dir
+D:/BUAS/SelfStudies/DB/DialogueBox/out/build/x64-debug/DiaBolic/CMakeFiles/edit_cache.dir
+D:/BUAS/SelfStudies/DB/DialogueBox/out/build/x64-debug/DiaBolic/CMakeFiles/rebuild_cache.dir

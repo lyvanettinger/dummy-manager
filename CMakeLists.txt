@@ -26,7 +26,7 @@ add_subdirectory("external/DirectXTex")
 set( GLFW_BUILD_DOCS OFF CACHE BOOL  "GLFW lib only" )
 set( GLFW_INSTALL OFF CACHE BOOL  "GLFW lib only" )
 
-add_subdirectory("external/GLFW")
+add_subdirectory("external/glfw")
 
 
 add_subdirectory("DiaBolic")

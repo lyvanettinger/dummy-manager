@@ -1,0 +1,165 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1,
+						2,
+						4
+					],
+					"jsonFile" : "directory-.-Debug-d0094a50bb2071803777.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.8"
+					},
+					"projectIndex" : 0,
+					"source" : "."
+				},
+				{
+					"build" : "external/DirectXTex",
+					"jsonFile" : "directory-external.DirectXTex-Debug-e6c49cf18a265b73b24b.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.8"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "external/DirectXTex",
+					"targetIndexes" : 
+					[
+						1
+					]
+				},
+				{
+					"build" : "external/GLFW",
+					"childIndexes" : 
+					[
+						3
+					],
+					"jsonFile" : "directory-external.GLFW-Debug-f1eaea38cc32b7856402.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.4"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 1,
+					"source" : "external/glfw"
+				},
+				{
+					"build" : "external/GLFW/src",
+					"jsonFile" : "directory-external.GLFW.src-Debug-11114092ee3d0a78eaff.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.4"
+					},
+					"parentIndex" : 2,
+					"projectIndex" : 1,
+					"source" : "external/glfw/src",
+					"targetIndexes" : 
+					[
+						2,
+						3
+					]
+				},
+				{
+					"build" : "DiaBolic",
+					"jsonFile" : "directory-DiaBolic-Debug-0fb3f9d8ec8dd3c57439.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.8"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "DiaBolic",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"childIndexes" : 
+					[
+						1
+					],
+					"directoryIndexes" : 
+					[
+						0,
+						1,
+						4
+					],
+					"name" : "DialogueBox",
+					"targetIndexes" : 
+					[
+						0,
+						1
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						2,
+						3
+					],
+					"name" : "GLFW",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						2,
+						3
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 4,
+					"id" : "DiaBolic::@fa22d10b3d217554e0e0",
+					"jsonFile" : "target-DiaBolic-Debug-5b312e1c46d93398755c.json",
+					"name" : "DiaBolic",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "DirectXTex::@4a5b8342d44dc22bd5ff",
+					"jsonFile" : "target-DirectXTex-Debug-55898f814f814b26dfd9.json",
+					"name" : "DirectXTex",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "glfw::@39536130fdb1aa6d70f0",
+					"jsonFile" : "target-glfw-Debug-68b7d00cb59eb03b3ba0.json",
+					"name" : "glfw",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "update_mappings::@39536130fdb1aa6d70f0",
+					"jsonFile" : "target-update_mappings-Debug-47aec3126cdb073a7f78.json",
+					"name" : "update_mappings",
+					"projectIndex" : 1
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "D:/BUAS/SelfStudies/DB/DialogueBox/out/build/x64-debug",
+		"source" : "D:/BUAS/SelfStudies/DB/DialogueBox"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 7
+	}
+}
