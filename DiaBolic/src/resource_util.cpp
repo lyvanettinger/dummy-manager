@@ -113,10 +113,10 @@ void Util::LoadTextureFromFile(
         throw std::exception("File not found.");
     }
 
-    /*DirectX::TexMetadata metadata;
-    DirectX::ScratchImage scratchImage;*/
+    DirectX::TexMetadata metadata;
+    DirectX::ScratchImage scratchImage;
 
-    /*if (filePath.extension() == ".dds")
+    if (filePath.extension() == ".dds")
     {
         ThrowIfFailed(DirectX::LoadFromDDSFile(
             fileName.c_str(),
@@ -145,10 +145,10 @@ void Util::LoadTextureFromFile(
             DirectX::WIC_FLAGS_NONE,
             &metadata,
             scratchImage));
-    }*/
+    }
 
     D3D12_RESOURCE_DESC textureDesc = {};
-    /*switch (metadata.dimension)
+    switch (metadata.dimension)
     {
     case DirectX::TEX_DIMENSION_TEXTURE1D:
         textureDesc = CD3DX12_RESOURCE_DESC::Tex1D(
@@ -173,7 +173,7 @@ void Util::LoadTextureFromFile(
     default:
         throw std::exception("Invalid texture dimension.");
         break;
-    }*/
+    }
     
     CD3DX12_HEAP_PROPERTIES textureHeapProps = CD3DX12_HEAP_PROPERTIES(D3D12_HEAP_TYPE_DEFAULT);
     ThrowIfFailed(device->CreateCommittedResource(
@@ -184,7 +184,7 @@ void Util::LoadTextureFromFile(
         nullptr,
         IID_PPV_ARGS(pDestinationResource)));
 
-    /*std::vector<D3D12_SUBRESOURCE_DATA> subresources(scratchImage.GetImageCount());
+    std::vector<D3D12_SUBRESOURCE_DATA> subresources(scratchImage.GetImageCount());
     const DirectX::Image* pImages = scratchImage.GetImages();
     for (int i = 0; i < scratchImage.GetImageCount(); ++i)
     {
@@ -192,13 +192,13 @@ void Util::LoadTextureFromFile(
         subresource.RowPitch = pImages[i].rowPitch;
         subresource.SlicePitch = pImages[i].slicePitch;
         subresource.pData = pImages[i].pixels;
-    }*/
+    }
 
     if (pDestinationResource)
     {
         TransitionResource(commandList, *pDestinationResource, D3D12_RESOURCE_STATE_COMMON, D3D12_RESOURCE_STATE_COPY_DEST);
 
-        /*UINT64 requiredSize = GetRequiredIntermediateSize(*pDestinationResource, 0, static_cast<uint32_t>(subresources.size()));
+        UINT64 requiredSize = GetRequiredIntermediateSize(*pDestinationResource, 0, static_cast<uint32_t>(subresources.size()));
 
         D3D12_RESOURCE_DESC bufferDesc = CD3DX12_RESOURCE_DESC::Buffer(requiredSize);
         CD3DX12_HEAP_PROPERTIES bufferHeapProps = CD3DX12_HEAP_PROPERTIES(D3D12_HEAP_TYPE_UPLOAD);
@@ -209,8 +209,8 @@ void Util::LoadTextureFromFile(
             D3D12_RESOURCE_STATE_GENERIC_READ,
             nullptr,
             IID_PPV_ARGS(pIntermediateResource)
-        ));*/
-        //UpdateSubresources(commandList.Get(), *pDestinationResource, *pIntermediateResource, 0, 0, static_cast<UINT>(subresources.size()), subresources.data());
+        ));
+        UpdateSubresources(commandList.Get(), *pDestinationResource, *pIntermediateResource, 0, 0, static_cast<UINT>(subresources.size()), subresources.data());
     }
 }
 

@@ -43,6 +43,7 @@ private:
     Microsoft::WRL::ComPtr<ID3D12DescriptorHeap> _dsvHeap;
     Microsoft::WRL::ComPtr<ID3D12DescriptorHeap> _srvHeap;
     UINT _rtvDescriptorSize;
+    UINT _dsvDescriptorSize;
     UINT _srvDescriptorSize;
 
     UINT _frameIndex;
@@ -51,7 +52,6 @@ private:
     bool _useWarpDevice;
 
     void InitializeGraphics();
-    void CreateDepthBuffer();
 
     // friend classes
     friend class GeometryPipeline;

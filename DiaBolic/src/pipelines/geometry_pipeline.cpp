@@ -33,7 +33,7 @@ void GeometryPipeline::PopulateCommandlist(const Microsoft::WRL::ComPtr<ID3D12Gr
     commandList->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
     commandList->IASetVertexBuffers(0, 1, &_vertexBufferView);
     commandList->IASetIndexBuffer(&_indexBufferView);
-    //commandList->SetGraphicsRootDescriptorTable(1, _renderer._srvHeap->GetGPUDescriptorHandleForHeapStart());
+    commandList->SetGraphicsRootDescriptorTable(1, _renderer._srvHeap->GetGPUDescriptorHandleForHeapStart());
 
     // Update the MVP matrix
     XMMATRIX mvpMatrix = XMMatrixMultiply(_camera->model, _camera->view);
@@ -179,15 +179,17 @@ void GeometryPipeline::InitializeAssets()
     // Create the texture.
     ComPtr<ID3D12Resource> intermediateAlbedoBuffer;
     _albedoTextureHandle = _renderer._srvHeap->GetCPUDescriptorHandleForHeapStart();
-    /*LoadTextureFromFile(_renderer._device, commandList,
+    LoadTextureFromFile(_renderer._device, commandList,
         &_albedoTexture, &intermediateAlbedoBuffer,
-        L"Utila.jpeg");*/
-    _albedoTextureView.Format = DXGI_FORMAT_R32G32B32A32_FLOAT;
+        L"assets/textures/Utila.jpeg");
+    _albedoTextureView.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
     _albedoTextureView.Shader4ComponentMapping = D3D12_DEFAULT_SHADER_4_COMPONENT_MAPPING;
     _albedoTextureView.ViewDimension = D3D12_SRV_DIMENSION_TEXTURE2D;
+    _albedoTextureView.Texture2D.PlaneSlice = 0;
     _albedoTextureView.Texture2D.MipLevels = 1;
-    //_renderer._device->CreateShaderResourceView(_albedoTexture.Get(), &_albedoTextureView, _albedoTextureHandle);
-    //_renderer._device->CopyDescriptorsSimple(1, _renderer._srvHeap->GetCPUDescriptorHandleForHeapStart(), _albedoTextureHandle, D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV);
+    _albedoTextureView.Texture2D.MostDetailedMip = 0;
+    _renderer._device->CreateShaderResourceView(_albedoTexture.Get(), &_albedoTextureView, _albedoTextureHandle);
+    _renderer._device->CopyDescriptorsSimple(1, _renderer._srvHeap->GetCPUDescriptorHandleForHeapStart(), _albedoTextureHandle, D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV);
 
     // Execute list
     uint64_t fenceValue = _renderer._copyCommandQueue->ExecuteCommandList(commandList);
