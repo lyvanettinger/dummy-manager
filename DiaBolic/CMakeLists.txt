@@ -28,48 +28,24 @@ set( SRC_FILES
 	src/pipelines/ui_pipeline.cpp
 )
 
-set( SHADER_FILES
-	shaders/uber_ps.hlsl
-	shaders/uber_vs.hlsl
-)
-
-set_source_files_properties( ${SHADER_FILES} 
-    PROPERTIES
-        VS_SHADER_OBJECT_FILE_NAME "${CMAKE_SOURCE_DIR}/Data/Shaders/DiaBolic/%(Filename).cso"
-        VS_SHADER_MODEL 6.0
-        VS_SHADER_DISABLE_OPTIMIZATIONS $<$<CONFIG:Debug>:ON>
-        VS_SHADER_ENABLE_DEBUG $<$<OR:$<CONFIG:Debug>>:ON>
-        VS_SHADER_FLAGS $<$<OR:$<CONFIG:Debug>>:-Qembed_debug>
-)
-
-set_source_files_properties( shaders/uber_vs.hlsl 
-    PROPERTIES 
-        VS_SHADER_TYPE Vertex
-)
-
-set_source_files_properties( shaders/uber_ps.hlsl
-    PROPERTIES 
-        VS_SHADER_TYPE Pixel
-)
-
-add_executable( DiaBolic WIN32
+add_executable( DiaBolic
     ${HEADER_FILES}
     ${SRC_FILES}
-    ${SHADER_FILES}
 	src/pch.cpp
 )
+
+add_dependencies( DiaBolic copy-assets)
 
 target_include_directories( DiaBolic
     PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/inc
 )
 
 target_link_libraries( DiaBolic
-    PRIVATE DirectXTex
-	PRIVATE GLFW
+    PUBLIC DirectXTex
+	PUBLIC glfw
 	PRIVATE d3d12.lib
 	PRIVATE dxgi.lib
 	PRIVATE D3DCompiler.lib
-	PRIVATE glfw3.lib
 	PRIVATE dxguid.lib
 )
 

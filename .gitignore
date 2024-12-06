@@ -1,6 +1,9 @@
 # Created by https://www.toptal.com/developers/gitignore/api/visualstudio,visualstudiocode,c++
 # Edit at https://www.toptal.com/developers/gitignore?templates=visualstudio,visualstudiocode,c++
 
+# Build output
+build
+
 ### C++ ###
 # Prerequisites
 *.d
@@ -88,7 +91,6 @@ bld/
 [Oo]bj/
 [Ll]og/
 [Ll]ogs/
-[Oo]ut/
 
 # Visual Studio 2015/2017 cache/options directory
 .vs/
