@@ -73,16 +73,8 @@ target_link_libraries( DiaBolic
 	PRIVATE dxguid.lib
 )
 
-# Enable precompiled header files.
-set_source_files_properties( ${SOURCE_FILES} 
-    PROPERTIES 
-        COMPILE_FLAGS /Yu"pch.h"
-)
-
-set_source_files_properties( src/pch.cpp
-    PROPERTIES
-        COMPILE_FLAGS /Yc"pch.h"
-)
+target_precompile_headers( DiaBolic
+	PRIVATE "src/pch.h")
 
 # Set Local Debugger Settings (Command Arguments and Environment Variables)
 set( COMMAND_ARGUMENTS "-wd \"${CMAKE_SOURCE_DIR}\"" )
