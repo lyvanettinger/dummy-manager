@@ -32,6 +32,7 @@ Renderer::Renderer(std::shared_ptr<Application> app) :
     InitializeCommandQueues();
     InitializeDescriptorHeaps();
     InitializeSwapchainResources();
+    ResizeDepthBuffer();
 
     // Create pipelines
     _geometryPipeline = std::make_unique<GeometryPipeline>(*this, _camera);
@@ -185,10 +186,10 @@ void Renderer::InitializeSwapchainResources()
     Util::ThrowIfFailed(swapChain.As(&_swapChain));
     _frameIndex = _swapChain->GetCurrentBackBufferIndex();
 
-    CreateTargets();
+    CreateRenderTargets();
 }
 
-void Renderer::CreateTargets()
+void Renderer::CreateRenderTargets()
 {
     DescriptorHandle rtvHandle = _rtvHeap->getDescriptorHandleFromStart();
 
@@ -199,8 +200,13 @@ void Renderer::CreateTargets()
         _device->CreateRenderTargetView(_renderTargets[n].Get(), nullptr, rtvHandle.cpuDescriptorHandle);
         _rtvHeap->offsetDescriptor(rtvHandle);
     }
+}
 
-    // Create DSV
+void Renderer::ResizeDepthBuffer()
+{
+    // Flush any GPU commands that might be referencing the depth buffer.
+    Flush();
+
     D3D12_CLEAR_VALUE optimizedClearValue = {};
     optimizedClearValue.Format = DXGI_FORMAT_D32_FLOAT;
     optimizedClearValue.DepthStencil = { 1.0f, 0 };
@@ -217,7 +223,6 @@ void Renderer::CreateTargets()
         IID_PPV_ARGS(&_depthBuffer)
     ));
 
-    // Update the depth-stencil view.
     D3D12_DEPTH_STENCIL_VIEW_DESC dsv = {};
     dsv.Format = DXGI_FORMAT_D32_FLOAT;
     dsv.ViewDimension = D3D12_DSV_DIMENSION_TEXTURE2D;
@@ -226,7 +231,4 @@ void Renderer::CreateTargets()
 
     _device->CreateDepthStencilView(_depthBuffer.Get(), &dsv,
         _dsvHeap->getDescriptorHandleFromStart().cpuDescriptorHandle);
-
-
-    Flush();
 }
