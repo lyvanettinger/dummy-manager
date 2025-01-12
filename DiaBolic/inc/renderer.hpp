@@ -32,6 +32,7 @@ private:
     CD3DX12_VIEWPORT _viewport;
     CD3DX12_RECT _scissorRect;
 
+	Microsoft::WRL::ComPtr<IDXGIFactory4> _factory;
     Microsoft::WRL::ComPtr<IDXGISwapChain3> _swapChain;
     Microsoft::WRL::ComPtr<ID3D12Device2> _device;
 
@@ -44,13 +45,19 @@ private:
 	std::unique_ptr<DescriptorHeap> _rtvHeap;
 	std::unique_ptr<DescriptorHeap> _dsvHeap;
 	std::unique_ptr<DescriptorHeap> _srvHeap;
+	std::unique_ptr<DescriptorHeap> _samplerHeap;
 
     UINT _frameIndex;
     uint64_t _fenceValues[FRAME_COUNT] = {};
     const float clearColor[4] = { 255.0f / 255.0f, 182.0f / 255.0f, 193.0f / 255.0f, 1.0f }; // pink :)
     bool _useWarpDevice;
 
-    void InitializeGraphics();
+	void InitializeCore();
+	void InitializeCommandQueues();
+	void InitializeDescriptorHeaps();
+    void InitializeSwapchainResources();
+
+	void CreateTargets();
 
     // friend classes
     friend class GeometryPipeline;

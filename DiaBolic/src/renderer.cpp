@@ -28,7 +28,10 @@ Renderer::Renderer(std::shared_ptr<Application> app) :
     _aspectRatio = static_cast<float>(_width) / static_cast<float>(_height);
     _camera = std::make_shared<Camera>();
 
-    InitializeGraphics();
+    InitializeCore();
+    InitializeCommandQueues();
+    InitializeDescriptorHeaps();
+    InitializeSwapchainResources();
 
     // Create pipelines
     _geometryPipeline = std::make_unique<GeometryPipeline>(*this, _camera);
@@ -85,7 +88,7 @@ void Renderer::Flush()
     _copyCommandQueue->Flush();
 }
 
-void Renderer::InitializeGraphics()
+void Renderer::InitializeCore()
 {
     UINT dxgiFactoryFlags = 0;
 
@@ -109,13 +112,12 @@ void Renderer::InitializeGraphics()
     // The DirectX 12 device is used to create resources (such as textures and buffers,
     // command lists, command queues, fences, heaps, etc�). It's not directly used for issuing draw or dispatch commands.
     // It can be considered a memory context that tracks allocations in GPU memory.
-    Microsoft::WRL::ComPtr<IDXGIFactory4> factory;
-    Util::ThrowIfFailed(CreateDXGIFactory2(dxgiFactoryFlags, IID_PPV_ARGS(&factory)));
+    Util::ThrowIfFailed(CreateDXGIFactory2(dxgiFactoryFlags, IID_PPV_ARGS(&_factory)));
 
     if (_useWarpDevice)
     {
         Microsoft::WRL::ComPtr<IDXGIAdapter> warpAdapter;
-        Util::ThrowIfFailed(factory->EnumWarpAdapter(IID_PPV_ARGS(&warpAdapter)));
+        Util::ThrowIfFailed(_factory->EnumWarpAdapter(IID_PPV_ARGS(&warpAdapter)));
 
         Util::ThrowIfFailed(D3D12CreateDevice(
             warpAdapter.Get(),
@@ -126,7 +128,7 @@ void Renderer::InitializeGraphics()
     else
     {
         Microsoft::WRL::ComPtr<IDXGIAdapter1> hardwareAdapter;
-        Util::GetHardwareAdapter(factory.Get(), &hardwareAdapter, false); // bool: request for high performance adapter or not?
+        Util::GetHardwareAdapter(_factory.Get(), &hardwareAdapter, false); // bool: request for high performance adapter or not?
 
         Util::ThrowIfFailed(D3D12CreateDevice(
             hardwareAdapter.Get(),
@@ -134,11 +136,25 @@ void Renderer::InitializeGraphics()
             IID_PPV_ARGS(&_device)
         ));
     }
+}
 
-    // Create command queues
+void Renderer::InitializeCommandQueues()
+{
     _directCommandQueue = std::make_unique<CommandQueue>(_device, D3D12_COMMAND_LIST_TYPE_DIRECT);
     _copyCommandQueue = std::make_unique<CommandQueue>(_device, D3D12_COMMAND_LIST_TYPE_COPY);
+}
 
+void Renderer::InitializeDescriptorHeaps()
+{
+    _rtvHeap = std::make_unique<DescriptorHeap>(_device, D3D12_DESCRIPTOR_HEAP_TYPE_RTV, FRAME_COUNT, L"Render Target View");
+    _dsvHeap = std::make_unique<DescriptorHeap>(_device, D3D12_DESCRIPTOR_HEAP_TYPE_DSV, 1, L"Depth Stencil View");
+    _srvHeap = std::make_unique<DescriptorHeap>(_device, D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV, MAX_CBV_SRV_UAV_COUNT, L"Shader Resource View");
+    _samplerHeap = std::make_unique<DescriptorHeap>(_device, D3D12_DESCRIPTOR_HEAP_TYPE_SAMPLER,
+                                                               D3D12_MAX_SHADER_VISIBLE_SAMPLER_HEAP_SIZE, L"Sampler Descriptor Heap");
+}
+
+void Renderer::InitializeSwapchainResources()
+{
     // Describe and create the swap chain.
     // https://www.3dgep.com/learning-directx-12-1/#Create_the_Swap_Chain
     // The primary purpose of the swap chain is to present the rendered image to the screen.
@@ -154,7 +170,7 @@ void Renderer::InitializeGraphics()
     swapChainDesc.SwapEffect = DXGI_SWAP_EFFECT_FLIP_DISCARD;
 
     Microsoft::WRL::ComPtr<IDXGISwapChain1> swapChain;
-    Util::ThrowIfFailed(factory->CreateSwapChainForHwnd(
+    Util::ThrowIfFailed(_factory->CreateSwapChainForHwnd(
         _directCommandQueue->GetCommandQueue().Get(),        // Swap chain needs the queue so that it can force a flush on it.
         _app->GetHWND(),
         &swapChainDesc,
@@ -164,68 +180,53 @@ void Renderer::InitializeGraphics()
     ));
 
     // This sample does not support fullscreen transitions.
-    Util::ThrowIfFailed(factory->MakeWindowAssociation(_app->GetHWND(), DXGI_MWA_NO_ALT_ENTER));
+    Util::ThrowIfFailed(_factory->MakeWindowAssociation(_app->GetHWND(), DXGI_MWA_NO_ALT_ENTER));
 
     Util::ThrowIfFailed(swapChain.As(&_swapChain));
     _frameIndex = _swapChain->GetCurrentBackBufferIndex();
 
-    // Create descriptor heaps.
-    // https://www.3dgep.com/learning-directx-12-1/#Create_a_Descriptor_Heap
-    // Descriptor heap can be considered an array of resource views such as:
-    // RTV (Render Target View), SRV (Shader Resource View), UAV (Unorderd Access Views) or CBV (Constant Buffer Views)
+    CreateTargets();
+}
+
+void Renderer::CreateTargets()
+{
+    DescriptorHandle rtvHandle = _rtvHeap->getDescriptorHandleFromStart();
+
+    // Create a RTV for each frame.
+    for (UINT n = 0; n < FRAME_COUNT; n++)
     {
-        // Describe and create a render target view (RTV) descriptor heap.
-        // https://www.3dgep.com/learning-directx-12-1/#Create_the_Render_Target_Views
-        // RTV (Render Target View) describes a resource that receives the final color computed by the pixel shader stage
-        // and can be attached to a bind slot of the output merger stage
-        _rtvHeap = std::make_unique<DescriptorHeap>(_device, D3D12_DESCRIPTOR_HEAP_TYPE_RTV, FRAME_COUNT, L"Render Target View");
-
-        // Create the descriptor heap for the depth-stencil view (DSV).
-        _dsvHeap = std::make_unique<DescriptorHeap>(_device, D3D12_DESCRIPTOR_HEAP_TYPE_DSV, 1, L"Depth Stencil View");
-
-        // Create the descriptor heap for the shader resource views (SRV)
-        _srvHeap = std::make_unique<DescriptorHeap>(_device, D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV, MAX_CBV_SRV_UAV_COUNT, L"Shader Resource View");
+        Util::ThrowIfFailed(_swapChain->GetBuffer(n, IID_PPV_ARGS(&_renderTargets[n])));
+        _device->CreateRenderTargetView(_renderTargets[n].Get(), nullptr, rtvHandle.cpuDescriptorHandle);
+        _rtvHeap->offsetDescriptor(rtvHandle);
     }
 
-    // Create frame resources.
-    {
-        CD3DX12_CPU_DESCRIPTOR_HANDLE rtvHandle(_rtvHeap->getDescriptorHandleFromStart().cpuDescriptorHandle);
+    // Create DSV
+    D3D12_CLEAR_VALUE optimizedClearValue = {};
+    optimizedClearValue.Format = DXGI_FORMAT_D32_FLOAT;
+    optimizedClearValue.DepthStencil = { 1.0f, 0 };
 
-        // Create a RTV for each frame.
-        for (UINT n = 0; n < FRAME_COUNT; n++)
-        {
-            Util::ThrowIfFailed(_swapChain->GetBuffer(n, IID_PPV_ARGS(&_renderTargets[n])));
-            _device->CreateRenderTargetView(_renderTargets[n].Get(), nullptr, rtvHandle);
-            rtvHandle.Offset(1, _rtvHeap->getDescriptorSize());
-        }
+    CD3DX12_HEAP_PROPERTIES heapProps(D3D12_HEAP_TYPE_DEFAULT);
+    CD3DX12_RESOURCE_DESC resourceDesc = CD3DX12_RESOURCE_DESC::Tex2D(DXGI_FORMAT_D32_FLOAT, _width, _height,
+        1, 0, 1, 0, D3D12_RESOURCE_FLAG_ALLOW_DEPTH_STENCIL);
+    Util::ThrowIfFailed(_device->CreateCommittedResource(
+        &heapProps,
+        D3D12_HEAP_FLAG_NONE,
+        &resourceDesc,
+        D3D12_RESOURCE_STATE_DEPTH_WRITE,
+        &optimizedClearValue,
+        IID_PPV_ARGS(&_depthBuffer)
+    ));
 
-        // Create DSV
-        D3D12_CLEAR_VALUE optimizedClearValue = {};
-        optimizedClearValue.Format = DXGI_FORMAT_D32_FLOAT;
-        optimizedClearValue.DepthStencil = { 1.0f, 0 };
+    // Update the depth-stencil view.
+    D3D12_DEPTH_STENCIL_VIEW_DESC dsv = {};
+    dsv.Format = DXGI_FORMAT_D32_FLOAT;
+    dsv.ViewDimension = D3D12_DSV_DIMENSION_TEXTURE2D;
+    dsv.Texture2D.MipSlice = 0;
+    dsv.Flags = D3D12_DSV_FLAG_NONE;
 
-        CD3DX12_HEAP_PROPERTIES heapProps(D3D12_HEAP_TYPE_DEFAULT);
-        CD3DX12_RESOURCE_DESC resourceDesc = CD3DX12_RESOURCE_DESC::Tex2D(DXGI_FORMAT_D32_FLOAT, _width, _height,
-            1, 0, 1, 0, D3D12_RESOURCE_FLAG_ALLOW_DEPTH_STENCIL);
-        Util::ThrowIfFailed(_device->CreateCommittedResource(
-            &heapProps,
-            D3D12_HEAP_FLAG_NONE,
-            &resourceDesc,
-            D3D12_RESOURCE_STATE_DEPTH_WRITE,
-            &optimizedClearValue,
-            IID_PPV_ARGS(&_depthBuffer)
-        ));
+    _device->CreateDepthStencilView(_depthBuffer.Get(), &dsv,
+        _dsvHeap->getDescriptorHandleFromStart().cpuDescriptorHandle);
 
-        // Update the depth-stencil view.
-        D3D12_DEPTH_STENCIL_VIEW_DESC dsv = {};
-        dsv.Format = DXGI_FORMAT_D32_FLOAT;
-        dsv.ViewDimension = D3D12_DSV_DIMENSION_TEXTURE2D;
-        dsv.Texture2D.MipSlice = 0;
-        dsv.Flags = D3D12_DSV_FLAG_NONE;
-
-        _device->CreateDepthStencilView(_depthBuffer.Get(), &dsv,
-            _dsvHeap->getDescriptorHandleFromStart().cpuDescriptorHandle);
-    }
 
     Flush();
 }
