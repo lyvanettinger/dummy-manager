@@ -9,6 +9,7 @@ set( HEADER_FILES
 	inc/glfw_app.hpp
 	inc/renderer.hpp
 	inc/resource_util.hpp
+	inc/descriptor_heap.hpp
 	inc/pipelines/geometry_pipeline.hpp
 	inc/pipelines/ui_pipeline.hpp
 )
@@ -26,6 +27,7 @@ set( SRC_FILES
 	src/resource_util.cpp
 	src/pipelines/geometry_pipeline.cpp
 	src/pipelines/ui_pipeline.cpp
+	src/descriptor_heap.cpp
 )
 
 add_executable( DiaBolic

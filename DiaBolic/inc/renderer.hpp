@@ -4,6 +4,7 @@ class Application;
 class GeometryPipeline;
 class UIPipeline;
 class CommandQueue;
+class DescriptorHeap;
 struct Camera;
 
 class Renderer
@@ -39,12 +40,10 @@ private:
 
     Microsoft::WRL::ComPtr<ID3D12Resource> _renderTargets[FRAME_COUNT];
     Microsoft::WRL::ComPtr<ID3D12Resource> _depthBuffer;
-    Microsoft::WRL::ComPtr<ID3D12DescriptorHeap> _rtvHeap;
-    Microsoft::WRL::ComPtr<ID3D12DescriptorHeap> _dsvHeap;
-    Microsoft::WRL::ComPtr<ID3D12DescriptorHeap> _srvHeap;
-    UINT _rtvDescriptorSize;
-    UINT _dsvDescriptorSize;
-    UINT _srvDescriptorSize;
+
+	std::unique_ptr<DescriptorHeap> _rtvHeap;
+	std::unique_ptr<DescriptorHeap> _dsvHeap;
+	std::unique_ptr<DescriptorHeap> _srvHeap;
 
     UINT _frameIndex;
     uint64_t _fenceValues[FRAME_COUNT] = {};

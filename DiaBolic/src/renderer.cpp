@@ -9,6 +9,7 @@
 #include "dx12_helpers.hpp"
 #include "resource_util.hpp"
 #include "glfw_app.hpp"
+#include "descriptor_heap.hpp"
 #include "command_queue.hpp"
 #include "camera.hpp"
 
@@ -22,7 +23,6 @@ Renderer::Renderer(std::shared_ptr<Application> app) :
     _height(_app->GetHeight()),
 	_viewport(0.0f, 0.0f, static_cast<float>(_width), static_cast<float>(_height)),
 	_scissorRect(0, 0, static_cast<LONG>(_width), static_cast<LONG>(_height)),
-	_rtvDescriptorSize(0),
     _useWarpDevice(false)
 {
     _aspectRatio = static_cast<float>(_width) / static_cast<float>(_height);
@@ -50,8 +50,8 @@ void Renderer::Update(float deltaTime)
 void Renderer::Render()
 {
     auto commandList = _directCommandQueue->GetCommandList();
-    CD3DX12_CPU_DESCRIPTOR_HANDLE rtvHandle = CD3DX12_CPU_DESCRIPTOR_HANDLE(_rtvHeap->GetCPUDescriptorHandleForHeapStart(), _frameIndex, _rtvDescriptorSize);;
-    auto dsvHandle = _dsvHeap->GetCPUDescriptorHandleForHeapStart();
+    CD3DX12_CPU_DESCRIPTOR_HANDLE rtvHandle = CD3DX12_CPU_DESCRIPTOR_HANDLE(_rtvHeap->getDescriptorHandleFromStart().cpuDescriptorHandle, _frameIndex, _rtvHeap->getDescriptorSize());;
+    auto dsvHandle = _dsvHeap->getDescriptorHandleFromStart().cpuDescriptorHandle;
     
     // Clear targets.
     Util::TransitionResource(commandList, _renderTargets[_frameIndex].Get(), D3D12_RESOURCE_STATE_PRESENT, D3D12_RESOURCE_STATE_RENDER_TARGET);
@@ -107,7 +107,7 @@ void Renderer::InitializeGraphics()
     // Create Device.
     // https://www.3dgep.com/learning-directx-12-1/#Create_the_DirectX_12_Device
     // The DirectX 12 device is used to create resources (such as textures and buffers,
-    // command lists, command queues, fences, heaps, etc…). It's not directly used for issuing draw or dispatch commands.
+    // command lists, command queues, fences, heaps, etcï¿½). It's not directly used for issuing draw or dispatch commands.
     // It can be considered a memory context that tracks allocations in GPU memory.
     Microsoft::WRL::ComPtr<IDXGIFactory4> factory;
     Util::ThrowIfFailed(CreateDXGIFactory2(dxgiFactoryFlags, IID_PPV_ARGS(&factory)));
@@ -178,40 +178,25 @@ void Renderer::InitializeGraphics()
         // https://www.3dgep.com/learning-directx-12-1/#Create_the_Render_Target_Views
         // RTV (Render Target View) describes a resource that receives the final color computed by the pixel shader stage
         // and can be attached to a bind slot of the output merger stage
-        D3D12_DESCRIPTOR_HEAP_DESC rtvHeapDesc = {};
-        rtvHeapDesc.NumDescriptors = FRAME_COUNT;
-        rtvHeapDesc.Type = D3D12_DESCRIPTOR_HEAP_TYPE_RTV;
-        rtvHeapDesc.Flags = D3D12_DESCRIPTOR_HEAP_FLAG_NONE;
-        Util::ThrowIfFailed(_device->CreateDescriptorHeap(&rtvHeapDesc, IID_PPV_ARGS(&_rtvHeap)));
-        _rtvDescriptorSize = _device->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_RTV);
+        _rtvHeap = std::make_unique<DescriptorHeap>(_device, D3D12_DESCRIPTOR_HEAP_TYPE_RTV, FRAME_COUNT, L"Render Target View");
 
         // Create the descriptor heap for the depth-stencil view (DSV).
-        D3D12_DESCRIPTOR_HEAP_DESC dsvHeapDesc = {};
-        dsvHeapDesc.NumDescriptors = 1;
-        dsvHeapDesc.Type = D3D12_DESCRIPTOR_HEAP_TYPE_DSV;
-        dsvHeapDesc.Flags = D3D12_DESCRIPTOR_HEAP_FLAG_NONE;
-        Util::ThrowIfFailed(_device->CreateDescriptorHeap(&dsvHeapDesc, IID_PPV_ARGS(&_dsvHeap)));
-        _dsvDescriptorSize = _device->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_DSV);
+        _dsvHeap = std::make_unique<DescriptorHeap>(_device, D3D12_DESCRIPTOR_HEAP_TYPE_DSV, 1, L"Depth Stencil View");
 
         // Create the descriptor heap for the shader resource views (SRV)
-        D3D12_DESCRIPTOR_HEAP_DESC srvHeapDesc = {};
-        srvHeapDesc.NumDescriptors = MAX_CBV_SRV_UAV_COUNT;
-        srvHeapDesc.Type = D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV;
-        srvHeapDesc.Flags = D3D12_DESCRIPTOR_HEAP_FLAG_SHADER_VISIBLE;
-        Util::ThrowIfFailed(_device->CreateDescriptorHeap(&srvHeapDesc, IID_PPV_ARGS(&_srvHeap)));
-        _srvDescriptorSize = _device->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV);
+        _srvHeap = std::make_unique<DescriptorHeap>(_device, D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV, MAX_CBV_SRV_UAV_COUNT, L"Shader Resource View");
     }
 
     // Create frame resources.
     {
-        CD3DX12_CPU_DESCRIPTOR_HANDLE rtvHandle(_rtvHeap->GetCPUDescriptorHandleForHeapStart());
+        CD3DX12_CPU_DESCRIPTOR_HANDLE rtvHandle(_rtvHeap->getDescriptorHandleFromStart().cpuDescriptorHandle);
 
         // Create a RTV for each frame.
         for (UINT n = 0; n < FRAME_COUNT; n++)
         {
             Util::ThrowIfFailed(_swapChain->GetBuffer(n, IID_PPV_ARGS(&_renderTargets[n])));
             _device->CreateRenderTargetView(_renderTargets[n].Get(), nullptr, rtvHandle);
-            rtvHandle.Offset(1, _rtvDescriptorSize);
+            rtvHandle.Offset(1, _rtvHeap->getDescriptorSize());
         }
 
         // Create DSV
@@ -239,7 +224,7 @@ void Renderer::InitializeGraphics()
         dsv.Flags = D3D12_DSV_FLAG_NONE;
 
         _device->CreateDepthStencilView(_depthBuffer.Get(), &dsv,
-            _dsvHeap->GetCPUDescriptorHandleForHeapStart());
+            _dsvHeap->getDescriptorHandleFromStart().cpuDescriptorHandle);
     }
 
     Flush();
