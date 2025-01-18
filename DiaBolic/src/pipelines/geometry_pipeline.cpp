@@ -107,11 +107,11 @@ void GeometryPipeline::CreatePipeline()
     UINT compileFlags = 0;
 #endif
 
-    ThrowIfFailed(D3DCompileFromFile(L"assets/shaders/uber_vs.hlsl", nullptr, nullptr, "main", "vs_5_0", compileFlags, 0, &vertexShader, nullptr));
-    ThrowIfFailed(D3DCompileFromFile(L"assets/shaders/uber_ps.hlsl", nullptr, nullptr, "main", "ps_5_0", compileFlags, 0, &pixelShader, nullptr));
+    ThrowIfFailed(D3DCompileFromFile(L"assets/shaders/cube_spin.hlsl", nullptr, nullptr, "VSmain", "vs_5_0", compileFlags, 0, &vertexShader, nullptr));
+    ThrowIfFailed(D3DCompileFromFile(L"assets/shaders/cube_spin.hlsl", nullptr, nullptr, "PSmain", "ps_5_0", compileFlags, 0, &pixelShader, nullptr));
 
-    const auto& vertexShaderBlob = ShaderCompiler::Compile(ShaderTypes::Vertex, L"assets/shaders/uber_vs.hlsl", L"main").shaderBlob;
-    const auto& pixelShaderBlob = ShaderCompiler::Compile(ShaderTypes::Pixel, L"assets/shaders/uber_ps.hlsl", L"main").shaderBlob;
+    //const auto& vertexShaderBlob = ShaderCompiler::Compile(ShaderTypes::Vertex, L"assets/shaders/uber_vs.hlsl", L"main").shaderBlob;
+    //const auto& pixelShaderBlob = ShaderCompiler::Compile(ShaderTypes::Pixel, L"assets/shaders/uber_ps.hlsl", L"main").shaderBlob;
 
     // Define the vertex input layout.
     D3D12_INPUT_ELEMENT_DESC inputElementDescs[] =
