@@ -7,6 +7,7 @@
 #include "renderer.hpp"
 #include "camera.hpp"
 #include "descriptor_heap.hpp"
+#include "shader_compiler.hpp"
 
 using namespace Util;
 using namespace Microsoft::WRL;
@@ -95,7 +96,6 @@ void GeometryPipeline::CreatePipeline()
     ThrowIfFailed(D3D12SerializeRootSignature(&rootSignatureDesc, D3D_ROOT_SIGNATURE_VERSION_1, &signature, &error));
     ThrowIfFailed(_renderer._device->CreateRootSignature(0, signature->GetBufferPointer(), signature->GetBufferSize(), IID_PPV_ARGS(&_rootSignature)));
 
-
     // Create the pipeline state, which includes compiling and loading shaders.
     ComPtr<ID3DBlob> vertexShader;
     ComPtr<ID3DBlob> pixelShader;
@@ -110,6 +110,9 @@ void GeometryPipeline::CreatePipeline()
     ThrowIfFailed(D3DCompileFromFile(L"assets/shaders/uber_vs.hlsl", nullptr, nullptr, "main", "vs_5_0", compileFlags, 0, &vertexShader, nullptr));
     ThrowIfFailed(D3DCompileFromFile(L"assets/shaders/uber_ps.hlsl", nullptr, nullptr, "main", "ps_5_0", compileFlags, 0, &pixelShader, nullptr));
 
+    const auto& vertexShaderBlob = ShaderCompiler::Compile(ShaderTypes::Vertex, L"assets/shaders/uber_vs.hlsl", L"main").shaderBlob;
+    const auto& pixelShaderBlob = ShaderCompiler::Compile(ShaderTypes::Pixel, L"assets/shaders/uber_ps.hlsl", L"main").shaderBlob;
+
     // Define the vertex input layout.
     D3D12_INPUT_ELEMENT_DESC inputElementDescs[] =
     {
@@ -118,34 +121,62 @@ void GeometryPipeline::CreatePipeline()
         { "TEXCOORD", 0, DXGI_FORMAT_R32G32_FLOAT,    0, D3D12_APPEND_ALIGNED_ELEMENT, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 },
     };
 
-    // Describe and create the graphics pipeline state object (PSO).
-    struct PipelineStateStream
-    {
-        CD3DX12_PIPELINE_STATE_STREAM_ROOT_SIGNATURE pRootSignature;
-        CD3DX12_PIPELINE_STATE_STREAM_INPUT_LAYOUT InputLayout;
-        CD3DX12_PIPELINE_STATE_STREAM_PRIMITIVE_TOPOLOGY PrimitiveTopologyType;
-        CD3DX12_PIPELINE_STATE_STREAM_VS VS;
-        CD3DX12_PIPELINE_STATE_STREAM_PS PS;
-        CD3DX12_PIPELINE_STATE_STREAM_DEPTH_STENCIL_FORMAT DSVFormat;
-        CD3DX12_PIPELINE_STATE_STREAM_RENDER_TARGET_FORMATS RTVFormats;
-    } pipelineStateStream;
-
-    D3D12_RT_FORMAT_ARRAY rtvFormats = {};
-    rtvFormats.NumRenderTargets = 1;
-    rtvFormats.RTFormats[0] = DXGI_FORMAT_R8G8B8A8_UNORM;
-
-    pipelineStateStream.pRootSignature = _rootSignature.Get();
-    pipelineStateStream.InputLayout = { inputElementDescs, _countof(inputElementDescs) };
-    pipelineStateStream.PrimitiveTopologyType = D3D12_PRIMITIVE_TOPOLOGY_TYPE_TRIANGLE;
-    pipelineStateStream.VS = CD3DX12_SHADER_BYTECODE(vertexShader.Get());
-    pipelineStateStream.PS = CD3DX12_SHADER_BYTECODE(pixelShader.Get());
-    pipelineStateStream.DSVFormat = DXGI_FORMAT_D32_FLOAT;
-    pipelineStateStream.RTVFormats = rtvFormats;
-
-    D3D12_PIPELINE_STATE_STREAM_DESC pipelineStateStreamDesc = {
-        sizeof(PipelineStateStream), &pipelineStateStream
+    // Setup blend descriptions.
+    constexpr D3D12_RENDER_TARGET_BLEND_DESC renderTargetBlendDesc = {
+        .BlendEnable = FALSE,
+        .LogicOpEnable = FALSE,
+        .SrcBlend = D3D12_BLEND_SRC_ALPHA,
+        .DestBlend = D3D12_BLEND_INV_SRC_ALPHA,
+        .BlendOp = D3D12_BLEND_OP_ADD,
+        .SrcBlendAlpha = D3D12_BLEND_ONE,
+        .DestBlendAlpha = D3D12_BLEND_ZERO,
+        .BlendOpAlpha = D3D12_BLEND_OP_ADD,
+        .RenderTargetWriteMask = D3D12_COLOR_WRITE_ENABLE_ALL,
     };
-    ThrowIfFailed(_renderer._device->CreatePipelineState(&pipelineStateStreamDesc, IID_PPV_ARGS(&_pipelineState)));
+
+    D3D12_BLEND_DESC blendDesc = {
+        .AlphaToCoverageEnable = FALSE,
+        .IndependentBlendEnable = FALSE,
+    };
+
+    for(uint8_t i = 0; i < FRAME_COUNT; i++)
+    {
+        blendDesc.RenderTarget[i] = renderTargetBlendDesc;
+    }
+
+    // Setup depth stencil state.
+    const D3D12_DEPTH_STENCIL_DESC depthStencilDesc = {
+        .DepthEnable = TRUE,
+        .DepthWriteMask = D3D12_DEPTH_WRITE_MASK_ALL,
+        .DepthFunc = D3D12_COMPARISON_FUNC_LESS_EQUAL,
+        .StencilEnable = FALSE,
+        .StencilReadMask = D3D12_DEFAULT_STENCIL_READ_MASK,
+        .StencilWriteMask = D3D12_DEFAULT_STENCIL_WRITE_MASK,
+    };
+
+    // Setup PSO.
+    D3D12_GRAPHICS_PIPELINE_STATE_DESC psoDesc = {
+        .pRootSignature = _rootSignature.Get(),
+        .VS = CD3DX12_SHADER_BYTECODE(vertexShader.Get()),
+        .PS = CD3DX12_SHADER_BYTECODE(pixelShader.Get()),
+        .BlendState = blendDesc,
+        .SampleMask = UINT32_MAX,
+        .RasterizerState = CD3DX12_RASTERIZER_DESC(D3D12_DEFAULT),
+        .DepthStencilState = depthStencilDesc,
+        .InputLayout = { inputElementDescs, _countof(inputElementDescs) },
+        .PrimitiveTopologyType = D3D12_PRIMITIVE_TOPOLOGY_TYPE_TRIANGLE,
+        .NumRenderTargets = FRAME_COUNT,
+        .DSVFormat = DXGI_FORMAT_D32_FLOAT,
+        .SampleDesc{.Count = 1u, .Quality = 0u},
+        .NodeMask = 0u,
+    };
+
+    for(uint8_t i = 0; i < FRAME_COUNT; i++)
+    {
+        psoDesc.RTVFormats[i] = DXGI_FORMAT_R8G8B8A8_UNORM;
+    }
+
+    ThrowIfFailed(_renderer._device->CreateGraphicsPipelineState(&psoDesc, IID_PPV_ARGS(&_pipelineState)));
 }
 
 void GeometryPipeline::InitializeAssets()
