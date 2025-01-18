@@ -1,7 +1,6 @@
 #include "command_queue.hpp"
 
-#include "dx12_helpers.hpp"
-#include "resource_util.hpp"
+#include "utility/dx12_helpers.hpp"
 
 #include <queue>
 

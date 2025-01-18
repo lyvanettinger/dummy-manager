@@ -1,10 +1,5 @@
 #include "pipelines/ui_pipeline.hpp"
 
-#include "dx12_helpers.hpp"
-#include "command_queue.hpp"
-
-#include "renderer.hpp"
-
 UIPipeline::UIPipeline(Renderer& renderer) :
 	_renderer(renderer)
 {

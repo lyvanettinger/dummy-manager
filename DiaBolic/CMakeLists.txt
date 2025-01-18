@@ -3,14 +3,15 @@
 set( HEADER_FILES
 	inc/camera.hpp
 	inc/command_queue.hpp
-	inc/d3dx12.h
 	inc/descriptor_heap.hpp
 	inc/dialogue_sample.hpp
-	inc/dx12_helpers.hpp
 	inc/glfw_app.hpp
 	inc/renderer.hpp
-	inc/resource_util.hpp
-	inc/shader_compiler.hpp
+	inc/utility/d3dx12.h
+	inc/utility/dx12_helpers.hpp
+	inc/utility/log.hpp
+	inc/utility/resource_util.hpp
+	inc/utility/shader_compiler.hpp
 	inc/pipelines/geometry_pipeline.hpp
 	inc/pipelines/ui_pipeline.hpp
 )
@@ -20,14 +21,14 @@ set( SRC_FILES
 	src/command_queue.cpp
 	src/descriptor_heap.cpp
 	src/dialogue_sample.cpp
-	src/dx12_helpers.cpp
 	src/glfw_app.cpp
 	src/main.cpp
 	src/pch.h
 	src/pch.cpp
 	src/renderer.cpp
-	src/resource_util.cpp
-	src/shader_compiler.cpp
+	src/utility/dx12_helpers.cpp
+	src/utility/resource_util.cpp
+	src/utility/shader_compiler.cpp
 	src/pipelines/geometry_pipeline.cpp
 	src/pipelines/ui_pipeline.cpp
 )
@@ -51,6 +52,8 @@ target_include_directories( DiaBolic
 target_link_libraries( DiaBolic
     PUBLIC DirectXTex
 	PUBLIC glfw
+	PRIVATE magic_enum::magic_enum
+	PRIVATE spdlog::spdlog
 	PRIVATE d3d12.lib
 	PRIVATE dxgi.lib
 	PRIVATE D3DCompiler.lib

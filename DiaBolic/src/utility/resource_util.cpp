@@ -1,6 +1,6 @@
-#include "resource_util.hpp"
+#include "utility/resource_util.hpp"
 
-#include "dx12_helpers.hpp"
+#include "utility/dx12_helpers.hpp"
 
 #ifndef _SILENCE_EXPERIMENTAL_FILESYSTEM_DEPRECATION_WARNING
 #define _SILENCE_EXPERIMENTAL_FILESYSTEM_DEPRECATION_WARNING

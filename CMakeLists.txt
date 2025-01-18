@@ -4,11 +4,13 @@
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
 # Make sure DLL and EXE targets go to the same directory.
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/$<CONFIG>) # Output directory for static lib (.LIB)
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/$<CONFIG>) # Output directory for shared lib (.DLL)
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/$<CONFIG>) # Output directory for executables (.EXE)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin/$<CONFIG>) # Output directory for static lib (.LIB)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin/$<CONFIG>) # Output directory for shared lib (.DLL)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin/$<CONFIG>) # Output directory for executables (.EXE)
 
 project( DialogueBox LANGUAGES CXX )
+
+include(FetchContent)
 
 # Enable to build shared libraries.
 option(BUILD_SHARED_LIBS "Create shared libraries." OFF)
@@ -26,12 +28,7 @@ endif()
 project ("DialogueBox")
 
 # Include sub-projects.
-add_subdirectory("external/DirectXTex")
-
-set( GLFW_BUILD_DOCS OFF CACHE BOOL  "GLFW lib only" )
-set( GLFW_INSTALL OFF CACHE BOOL  "GLFW lib only" )
-
-add_subdirectory("external/glfw")
+add_subdirectory("external")
 
 add_subdirectory("DiaBolic")
 

@@ -18,8 +18,8 @@ namespace Util
 
     namespace ShaderCompiler
     {
-        [[nodiscard]] Shader Compile(const ShaderTypes& shaderType, const std::wstring shaderPath,
-                                     const std::wstring entryPoint, const bool extractRootSignature = false);
+        [[nodiscard]] Shader Compile(const ShaderTypes& shaderType, const std::wstring_view shaderPath,
+                                     const std::wstring_view entryPoint, const bool extractRootSignature = false);
     }
 }
 

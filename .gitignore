@@ -1,5 +1,8 @@
 # Build output
 build
+external/DirectXAgilitySDK
+external/DirectXShaderCompiler
+*.zip
 
 ### C++ ###
 # Prerequisites

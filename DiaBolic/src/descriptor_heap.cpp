@@ -1,6 +1,6 @@
 #include "descriptor_heap.hpp"
 
-#include "dx12_helpers.hpp"
+#include "utility/dx12_helpers.hpp"
 
 DescriptorHeap::DescriptorHeap(Microsoft::WRL::ComPtr<ID3D12Device2>& device, const D3D12_DESCRIPTOR_HEAP_TYPE descriptorHeapType,
                                    const uint32_t descriptorCount, const std::wstring& descriptorHeapName)

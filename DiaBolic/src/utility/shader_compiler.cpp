@@ -1,6 +1,7 @@
-#include "shader_compiler.hpp"
+#include "utility/shader_compiler.hpp"
 
-#include "dx12_helpers.hpp"
+#include "utility/dx12_helpers.hpp"
+#include "utility/log.hpp"
 
 using namespace Microsoft::WRL;
 
@@ -17,8 +18,8 @@ namespace Util
 
     std::wstring shaderDirectory{};
 
-    Shader Compile(const ShaderTypes& shaderType, const std::wstring shaderPath,
-                   const std::wstring entryPoint, const bool extractRootSignature)
+    Shader Compile(const ShaderTypes& shaderType, const std::wstring_view shaderPath,
+                   const std::wstring_view entryPoint, const bool extractRootSignature)
     {
         Shader shader{};
 
@@ -57,17 +58,21 @@ namespace Util
             }
         }();
 
-        std::vector<LPCWSTR> compilationArguments = {
-            L"-HV",
-            L"2021",
-            L"-E",
-            entryPoint.data(),
-            L"-T",
-            targetProfile.c_str(),
-            DXC_ARG_PACK_MATRIX_ROW_MAJOR,
-            DXC_ARG_WARNINGS_ARE_ERRORS,
-            DXC_ARG_ALL_RESOURCES_BOUND,
-        };
+        std::vector<LPCWSTR> compilationArguments;
+
+        // -E for the entry point (eg. 'main')
+        compilationArguments.push_back(L"-E");
+        compilationArguments.push_back(entryPoint.data());
+
+        // -T for the target profile (eg. 'ps_6_6')
+        compilationArguments.push_back(L"-T");
+        compilationArguments.push_back(targetProfile.c_str());
+
+        // Strip reflection data and pdbs (see later)
+        compilationArguments.push_back(L"-Qstrip_debug");
+        compilationArguments.push_back(L"-Qstrip_reflect");
+
+        compilationArguments.push_back(DXC_ARG_WARNINGS_ARE_ERRORS);
 
         // Indicate that the shader should be in a debuggable state if in debug mode.
         // Else, set optimization level to 03.
@@ -81,10 +86,11 @@ namespace Util
         ComPtr<IDxcBlobEncoding> sourceBlob{nullptr};
         ThrowIfFailed(utils->LoadFile(shaderPath.data(), nullptr, &sourceBlob));
 
-        DxcBuffer sourceBuffer;
-        sourceBuffer.Ptr = sourceBlob->GetBufferPointer();
-        sourceBuffer.Size = sourceBlob->GetBufferSize();
-        sourceBuffer.Encoding = 0u;
+        const DxcBuffer sourceBuffer = {
+            .Ptr = sourceBlob->GetBufferPointer(),
+            .Size = sourceBlob->GetBufferSize(),
+            .Encoding = 0u,
+        };
 
         // Compile the shader.
         ComPtr<IDxcResult> compiledShaderBuffer{};
@@ -98,7 +104,7 @@ namespace Util
         if (errors && errors->GetStringLength() > 0)
         {
             const LPCSTR errorMessage = errors->GetStringPointer();
-            std::printf("Shader path : {}, Error : {}", shaderPath, errorMessage);
+            dblog::error(std::format("[SHADER COMPILER] Shader path: {}, Error: {}", wStringToString(shaderPath), errorMessage));
         }
 
         ComPtr<IDxcBlob> compiledShaderBlob{nullptr};

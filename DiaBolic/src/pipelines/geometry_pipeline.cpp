@@ -1,5 +1,5 @@
-#include "resource_util.hpp"
-#include "dx12_helpers.hpp"
+#include "utility/resource_util.hpp"
+#include "utility/dx12_helpers.hpp"
 
 #include "pipelines/geometry_pipeline.hpp"
 
@@ -7,7 +7,7 @@
 #include "renderer.hpp"
 #include "camera.hpp"
 #include "descriptor_heap.hpp"
-#include "shader_compiler.hpp"
+#include "utility/shader_compiler.hpp"
 
 using namespace Util;
 using namespace Microsoft::WRL;
@@ -96,22 +96,8 @@ void GeometryPipeline::CreatePipeline()
     ThrowIfFailed(D3D12SerializeRootSignature(&rootSignatureDesc, D3D_ROOT_SIGNATURE_VERSION_1, &signature, &error));
     ThrowIfFailed(_renderer._device->CreateRootSignature(0, signature->GetBufferPointer(), signature->GetBufferSize(), IID_PPV_ARGS(&_rootSignature)));
 
-    // Create the pipeline state, which includes compiling and loading shaders.
-    ComPtr<ID3DBlob> vertexShader;
-    ComPtr<ID3DBlob> pixelShader;
-
-#if defined(_DEBUG)
-    // Enable better shader debugging with the graphics debugging tools.
-    UINT compileFlags = D3DCOMPILE_DEBUG | D3DCOMPILE_SKIP_OPTIMIZATION;
-#else
-    UINT compileFlags = 0;
-#endif
-
-    ThrowIfFailed(D3DCompileFromFile(L"assets/shaders/cube_spin.hlsl", nullptr, nullptr, "VSmain", "vs_5_0", compileFlags, 0, &vertexShader, nullptr));
-    ThrowIfFailed(D3DCompileFromFile(L"assets/shaders/cube_spin.hlsl", nullptr, nullptr, "PSmain", "ps_5_0", compileFlags, 0, &pixelShader, nullptr));
-
-    //const auto& vertexShaderBlob = ShaderCompiler::Compile(ShaderTypes::Vertex, L"assets/shaders/uber_vs.hlsl", L"main").shaderBlob;
-    //const auto& pixelShaderBlob = ShaderCompiler::Compile(ShaderTypes::Pixel, L"assets/shaders/uber_ps.hlsl", L"main").shaderBlob;
+    const auto& vertexShaderBlob = ShaderCompiler::Compile(ShaderTypes::Vertex, L"assets/shaders/cube_spin.hlsl", L"VSmain").shaderBlob;
+    const auto& pixelShaderBlob = ShaderCompiler::Compile(ShaderTypes::Pixel, L"assets/shaders/cube_spin.hlsl", L"PSmain").shaderBlob;
 
     // Define the vertex input layout.
     D3D12_INPUT_ELEMENT_DESC inputElementDescs[] =
@@ -157,8 +143,8 @@ void GeometryPipeline::CreatePipeline()
     // Setup PSO.
     D3D12_GRAPHICS_PIPELINE_STATE_DESC psoDesc = {
         .pRootSignature = _rootSignature.Get(),
-        .VS = CD3DX12_SHADER_BYTECODE(vertexShader.Get()),
-        .PS = CD3DX12_SHADER_BYTECODE(pixelShader.Get()),
+        .VS = CD3DX12_SHADER_BYTECODE(vertexShaderBlob->GetBufferPointer(), vertexShaderBlob->GetBufferSize()),
+        .PS = CD3DX12_SHADER_BYTECODE(pixelShaderBlob->GetBufferPointer(), pixelShaderBlob->GetBufferSize()),
         .BlendState = blendDesc,
         .SampleMask = UINT32_MAX,
         .RasterizerState = CD3DX12_RASTERIZER_DESC(D3D12_DEFAULT),
