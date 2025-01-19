@@ -1,4 +1,4 @@
-# DialogueBox
+# DiaBolic
 
 A barebones project I made to learn basic DX12 (and eventually font rendering) with. It has set out to become a bit of a framework along the way.
 #### It features:
