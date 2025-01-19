@@ -45,22 +45,8 @@ set_property(TARGET DiaBolic
 
 add_dependencies( DiaBolic copy-assets)
 
-target_include_directories( DiaBolic
-    PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/inc
-	PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}../assets/shaders
-)
-
-target_link_libraries( DiaBolic
-    PUBLIC DirectXTex
-	PUBLIC glfw
-	PRIVATE magic_enum::magic_enum
-	PRIVATE spdlog::spdlog
-	PRIVATE d3d12.lib
-	PRIVATE dxgi.lib
-	PRIVATE D3DCompiler.lib
-	PRIVATE dxcompiler.lib
-	PRIVATE dxguid.lib
-)
+target_link_libraries( DiaBolic PUBLIC External d3d12.lib dxgi.lib D3DCompiler.lib dxcompiler.lib dxguid.lib)
+target_include_directories( DiaBolic PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/inc ${CMAKE_CURRENT_SOURCE_DIR}../assets/shaders)
 
 target_precompile_headers( DiaBolic
 	PRIVATE "src/pch.h")

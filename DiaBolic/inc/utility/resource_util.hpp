@@ -21,6 +21,10 @@ namespace Util
 
 	struct Buffer
 	{
+		Microsoft::WRL::ComPtr<D3D12MA::Allocation> allocation{};
+		std::optional<void*> mappedPointer{};
+		wrl::ComPtr<ID3D12Resource> resource{};
+
 		uint32_t srvIndex{};
 		uint32_t uavIndex{};
 		uint32_t cbvIndex{};

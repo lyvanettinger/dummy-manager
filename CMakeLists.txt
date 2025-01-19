@@ -10,8 +10,6 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin/$<CONFIG>) # Output d
 
 project( DialogueBox LANGUAGES CXX )
 
-include(FetchContent)
-
 # Enable to build shared libraries.
 option(BUILD_SHARED_LIBS "Create shared libraries." OFF)
 
