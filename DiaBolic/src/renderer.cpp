@@ -54,21 +54,24 @@ void Renderer::Update(float deltaTime)
 void Renderer::Render()
 {
     auto commandList = _directCommandQueue->GetCommandList();
-    CD3DX12_CPU_DESCRIPTOR_HANDLE rtvHandle = CD3DX12_CPU_DESCRIPTOR_HANDLE(_rtvHeap->getDescriptorHandleFromStart().cpuDescriptorHandle, _frameIndex, _rtvHeap->getDescriptorSize());;
-    auto dsvHandle = _dsvHeap->getDescriptorHandleFromStart().cpuDescriptorHandle;
-    
+
+    // Set heaps for bindless.
+    SetDescriptorHeaps(commandList);
+
     // Clear targets.
+    auto rtvHandle = _rtvHeap->GetDescriptorHandleFromIndex(_renderTargetIndex[_frameIndex]);
+    auto dsvHandle = _dsvHeap->GetDescriptorHandleFromIndex(_depthTargetIndex);
     Util::TransitionResource(commandList, _renderTargets[_frameIndex].Get(), D3D12_RESOURCE_STATE_PRESENT, D3D12_RESOURCE_STATE_RENDER_TARGET);
-    commandList->ClearRenderTargetView(rtvHandle, clearColor, 0, nullptr);
-    commandList->ClearDepthStencilView(dsvHandle, D3D12_CLEAR_FLAG_DEPTH, 1.0f, 0, 0, nullptr);
+    commandList->ClearRenderTargetView(rtvHandle.cpuDescriptorHandle, clearColor, 0, nullptr);
+    commandList->ClearDepthStencilView(dsvHandle.cpuDescriptorHandle, D3D12_CLEAR_FLAG_DEPTH, 1.0f, 0, 0, nullptr);
 
     // Record command lists.
-    commandList->OMSetRenderTargets(1, &rtvHandle, FALSE, &dsvHandle);
+    commandList->OMSetRenderTargets(1, &rtvHandle.cpuDescriptorHandle, FALSE, &dsvHandle.cpuDescriptorHandle);
     commandList->RSSetViewports(1, &_viewport);
     commandList->RSSetScissorRects(1, &_scissorRect);
     _geometryPipeline->PopulateCommandlist(commandList);
 
-    // Sync up resource(s) (might need this inbetween some stages later)
+    // Sync up resource(s) (might need this in between some stages later)
     Util::TransitionResource(commandList, _renderTargets[_frameIndex].Get(), D3D12_RESOURCE_STATE_RENDER_TARGET, D3D12_RESOURCE_STATE_PRESENT);
 
     // Execute commandlist.
@@ -88,6 +91,17 @@ void Renderer::Flush()
     _directCommandQueue->Flush();
     _copyCommandQueue->Flush();
 }
+
+void Renderer::SetDescriptorHeaps(const Microsoft::WRL::ComPtr<ID3D12GraphicsCommandList2>& commandList) const
+{
+    const std::array<ID3D12DescriptorHeap* const, 2u> shaderVisibleDescriptorHeaps = {
+        _srvHeap->GetDescriptorHeap(),
+        _samplerHeap->GetDescriptorHeap(),
+    };
+
+    commandList->SetDescriptorHeaps(shaderVisibleDescriptorHeaps.size(), shaderVisibleDescriptorHeaps.data());
+}
+
 
 void Renderer::InitializeCore()
 {
@@ -200,9 +214,11 @@ void Renderer::CreateRenderTargets()
         Util::ThrowIfFailed(_swapChain->GetBuffer(n, IID_PPV_ARGS(&_renderTargets[n])));
         const D3D12_RENDER_TARGET_VIEW_DESC desc = {
             .Format = DXGI_FORMAT_R8G8B8A8_UNORM,
-            .ViewDimension = D3D12_RTV_DIMENSION_TEXTURE2D
+            .ViewDimension = D3D12_RTV_DIMENSION_TEXTURE2D,
         };
         _renderTargetIndex[n] = CreateRtv(desc, _renderTargets[n]);
+        std::wstring name = std::wstring(L"Render Target ") + std::to_wstring(n);
+        _renderTargets[n]->SetName(name.c_str());
     }
 }
 
@@ -227,72 +243,76 @@ void Renderer::CreateDepthTarget()
         IID_PPV_ARGS(&_depthTarget)
     ));
 
-    D3D12_DEPTH_STENCIL_VIEW_DESC dsv = {};
-    dsv.Format = DXGI_FORMAT_D32_FLOAT;
-    dsv.ViewDimension = D3D12_DSV_DIMENSION_TEXTURE2D;
-    dsv.Texture2D.MipSlice = 0;
-    dsv.Flags = D3D12_DSV_FLAG_NONE;
+    const D3D12_DEPTH_STENCIL_VIEW_DESC dsv = {
+        .Format = DXGI_FORMAT_D32_FLOAT,
+        .ViewDimension = D3D12_DSV_DIMENSION_TEXTURE2D,
+        .Flags = D3D12_DSV_FLAG_NONE,
+        .Texture2D = {
+            .MipSlice = 0
+        }
+    };
 
     _depthTargetIndex = CreateDsv(dsv, _depthTarget);
+    _depthTarget->SetName(L"Depth Target");
 }
 
 uint32_t Renderer::CreateCbv(const D3D12_CONSTANT_BUFFER_VIEW_DESC& cbvCreationDesc) const
 {
-    const uint32_t cbvIndex = _srvHeap->getCurrentDescriptorIndex();
+    const uint32_t cbvIndex = _srvHeap->GetCurrentDescriptorIndex();
 
     _device->CreateConstantBufferView(&cbvCreationDesc,
-                                       _srvHeap->getCurrentDescriptorHandle().cpuDescriptorHandle);
+                                       _srvHeap->GetCurrentDescriptorHandle().cpuDescriptorHandle);
 
-    _srvHeap->offsetCurrentHandle();
+    _srvHeap->OffsetCurrentHandle();
 
     return cbvIndex;
 }
 
 uint32_t Renderer::CreateSrv(const D3D12_SHADER_RESOURCE_VIEW_DESC& srvCreationDesc, const Microsoft::WRL::ComPtr<ID3D12Resource>& resource) const
 {
-    const uint32_t srvIndex = _srvHeap->getCurrentDescriptorIndex();
+    const uint32_t srvIndex = _srvHeap->GetCurrentDescriptorIndex();
 
     _device->CreateShaderResourceView(resource.Get(), &srvCreationDesc,
-                                       _srvHeap->getCurrentDescriptorHandle().cpuDescriptorHandle);
+                                       _srvHeap->GetCurrentDescriptorHandle().cpuDescriptorHandle);
 
-    _srvHeap->offsetCurrentHandle();
+    _srvHeap->OffsetCurrentHandle();
 
     return srvIndex;
 }
 
 uint32_t Renderer::CreateUav(const D3D12_UNORDERED_ACCESS_VIEW_DESC& uavCreationDesc, const Microsoft::WRL::ComPtr<ID3D12Resource>& resource) const
 {
-    const uint32_t uavIndex = _srvHeap->getCurrentDescriptorIndex();
+    const uint32_t uavIndex = _srvHeap->GetCurrentDescriptorIndex();
 
     _device->CreateUnorderedAccessView(
         resource.Get(), nullptr, &uavCreationDesc,
-        _srvHeap->getCurrentDescriptorHandle().cpuDescriptorHandle);
+        _srvHeap->GetCurrentDescriptorHandle().cpuDescriptorHandle);
 
-    _srvHeap->offsetCurrentHandle();
+    _srvHeap->OffsetCurrentHandle();
 
     return uavIndex;
 }
 
 uint32_t Renderer::CreateRtv(const D3D12_RENDER_TARGET_VIEW_DESC& rtvCreationDesc, const Microsoft::WRL::ComPtr<ID3D12Resource>& resource) const
 {
-    const uint32_t rtvIndex = _rtvHeap->getCurrentDescriptorIndex();
+    const uint32_t rtvIndex = _rtvHeap->GetCurrentDescriptorIndex();
 
     _device->CreateRenderTargetView(resource.Get(), &rtvCreationDesc,
-                                     _rtvHeap->getCurrentDescriptorHandle().cpuDescriptorHandle);
+                                     _rtvHeap->GetCurrentDescriptorHandle().cpuDescriptorHandle);
 
-    _rtvHeap->offsetCurrentHandle();
+    _rtvHeap->OffsetCurrentHandle();
 
     return rtvIndex;
 }
 
 uint32_t Renderer::CreateDsv(const D3D12_DEPTH_STENCIL_VIEW_DESC& dsvCreationDesc, const Microsoft::WRL::ComPtr<ID3D12Resource>& resource) const
 {
-    const uint32_t dsvIndex = _dsvHeap->getCurrentDescriptorIndex();
+    const uint32_t dsvIndex = _dsvHeap->GetCurrentDescriptorIndex();
 
     _device->CreateDepthStencilView(resource.Get(), &dsvCreationDesc,
-                                     _dsvHeap->getCurrentDescriptorHandle().cpuDescriptorHandle);
+                                     _dsvHeap->GetCurrentDescriptorHandle().cpuDescriptorHandle);
 
-    _dsvHeap->offsetCurrentHandle();
+    _dsvHeap->OffsetCurrentHandle();
 
     return dsvIndex;
 }

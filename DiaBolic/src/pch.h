@@ -27,6 +27,7 @@
 #include <queue>
 #include <stdlib.h>
 #include <stdio.h>
+#include <array>
 
 // program specific
 #define FRAME_COUNT 2

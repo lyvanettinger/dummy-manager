@@ -10,7 +10,9 @@
 namespace fs = std::experimental::filesystem;
 
 void Util::CreateCube(
-    std::vector<Vertex>& vertices,
+    std::vector<DirectX::XMFLOAT3>& vertices,
+    std::vector<DirectX::XMFLOAT3>& normals,
+    std::vector<DirectX::XMFLOAT2>& uvs,
     std::vector<uint16_t>& indices,
     float size)
 {
@@ -38,10 +40,20 @@ void Util::CreateCube(
     for (uint16_t f = 0; f < 6; ++f)  // For each face of the cube.
     {
         // Four vertices per face.
-        vertices.emplace_back(p[i[f * 4 + 0]], n[f], t[0]);
-        vertices.emplace_back(p[i[f * 4 + 1]], n[f], t[1]);
-        vertices.emplace_back(p[i[f * 4 + 2]], n[f], t[2]);
-        vertices.emplace_back(p[i[f * 4 + 3]], n[f], t[3]);
+        vertices.emplace_back(p[i[f * 4 + 0]]);
+        vertices.emplace_back(p[i[f * 4 + 1]]);
+        vertices.emplace_back(p[i[f * 4 + 2]]);
+        vertices.emplace_back(p[i[f * 4 + 3]]);
+
+        normals.emplace_back(n[f]);
+        normals.emplace_back(n[f]);
+        normals.emplace_back(n[f]);
+        normals.emplace_back(n[f]);
+
+        uvs.emplace_back(t[0]);
+        uvs.emplace_back(t[1]);
+        uvs.emplace_back(t[2]);
+        uvs.emplace_back(t[3]);
 
         // First triangle.
         indices.emplace_back(f * 4 + 0);

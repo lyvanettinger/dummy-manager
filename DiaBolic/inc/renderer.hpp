@@ -68,6 +68,8 @@ private:
 	[[nodiscard]] uint32_t CreateRtv(const D3D12_RENDER_TARGET_VIEW_DESC& rtvCreationDesc, const Microsoft::WRL::ComPtr<ID3D12Resource>& resource) const;
 	[[nodiscard]] uint32_t CreateDsv(const D3D12_DEPTH_STENCIL_VIEW_DESC& dsvCreationDesc, const Microsoft::WRL::ComPtr<ID3D12Resource>& resource) const;
 
+	void SetDescriptorHeaps(const Microsoft::WRL::ComPtr<ID3D12GraphicsCommandList2>& commandList) const;
+
     // friend classes
     friend class GeometryPipeline;
     friend class UIPipeline;

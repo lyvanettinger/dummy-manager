@@ -30,43 +30,43 @@ DescriptorHeap::DescriptorHeap(Microsoft::WRL::ComPtr<ID3D12Device2>& device, co
         _currentDescriptorHandle = _descriptorHandleFromHeapStart;
     }
 
-    DescriptorHandle DescriptorHeap::getDescriptorHandleFromIndex(const uint32_t index) const
+    DescriptorHandle DescriptorHeap::GetDescriptorHandleFromIndex(const uint32_t index) const
     {
-        DescriptorHandle handle = getDescriptorHandleFromStart();
-        offsetDescriptor(handle, index);
+        DescriptorHandle handle = GetDescriptorHandleFromStart();
+        OffsetDescriptor(handle, index);
 
         return std::move(handle);
     }
 
-    uint32_t DescriptorHeap::getDescriptorIndex(const DescriptorHandle& descriptorHandle) const
+    uint32_t DescriptorHeap::GetDescriptorIndex(const DescriptorHandle& descriptorHandle) const
     {
         return static_cast<uint32_t>(
             (descriptorHandle.gpuDescriptorHandle.ptr - _descriptorHandleFromHeapStart.gpuDescriptorHandle.ptr) /
             _descriptorSize);
     }
 
-    uint32_t DescriptorHeap::getCurrentDescriptorIndex() const
+    uint32_t DescriptorHeap::GetCurrentDescriptorIndex() const
     {
-        return getDescriptorIndex(_currentDescriptorHandle);
+        return GetDescriptorIndex(_currentDescriptorHandle);
     }
 
-    void DescriptorHeap::offsetDescriptor(D3D12_CPU_DESCRIPTOR_HANDLE& handle, const uint32_t offset) const
-    {
-        handle.ptr += _descriptorSize * static_cast<unsigned long long>(offset);
-    }
-
-    void DescriptorHeap::offsetDescriptor(D3D12_GPU_DESCRIPTOR_HANDLE& handle, const uint32_t offset) const
+    void DescriptorHeap::OffsetDescriptor(D3D12_CPU_DESCRIPTOR_HANDLE& handle, const uint32_t offset) const
     {
         handle.ptr += _descriptorSize * static_cast<unsigned long long>(offset);
     }
 
-    void DescriptorHeap::offsetDescriptor(DescriptorHandle& descriptorHandle, const uint32_t offset) const
+    void DescriptorHeap::OffsetDescriptor(D3D12_GPU_DESCRIPTOR_HANDLE& handle, const uint32_t offset) const
+    {
+        handle.ptr += _descriptorSize * static_cast<unsigned long long>(offset);
+    }
+
+    void DescriptorHeap::OffsetDescriptor(DescriptorHandle& descriptorHandle, const uint32_t offset) const
     {
         descriptorHandle.cpuDescriptorHandle.ptr += _descriptorSize * static_cast<unsigned long long>(offset);
         descriptorHandle.gpuDescriptorHandle.ptr += _descriptorSize * static_cast<unsigned long long>(offset);
     }
 
-    void DescriptorHeap::offsetCurrentHandle(const uint32_t offset)
+    void DescriptorHeap::OffsetCurrentHandle(const uint32_t offset)
     {
-        offsetDescriptor(_currentDescriptorHandle, offset);
+        OffsetDescriptor(_currentDescriptorHandle, offset);
     }

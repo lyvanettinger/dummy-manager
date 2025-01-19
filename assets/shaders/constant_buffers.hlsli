@@ -1,15 +1,28 @@
 #pragma once
 
-struct SceneResources // TEMP
-{
-    matrix MVP;
-};
+#ifdef __cplusplus
 
-struct RenderResources
+#define float4 DirectX::XMFLOAT4
+#define float3 DirectX::XMFLOAT3
+#define float2 DirectX::XMFLOAT2
+
+#define uint uint32_t
+
+#define float4x4 DirectX::XMMATRIX
+
+#define ConstantBufferStruct struct alignas(256)
+
+#else // if HLSL
+
+#define ConstantBufferStruct struct
+
+#endif
+
+ConstantBufferStruct SceneResources
 {
-    matrix MVP;
+    float4x4 MVP;
     uint positionBufferIndex;
     uint normalBufferIndex;
-    uint uvBufferindex;
-    uint textureBufferIndex;
+    uint uvBufferIndex;
+    uint textureIndex;
 };

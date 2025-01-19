@@ -33,14 +33,13 @@ void GeometryPipeline::PopulateCommandlist(const Microsoft::WRL::ComPtr<ID3D12Gr
 
     // Start recording.
     commandList->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
-    commandList->IASetVertexBuffers(0, 1, &_vertexBufferView);
     commandList->IASetIndexBuffer(&_indexBufferView);
-    //commandList->SetGraphicsRootDescriptorTable(1, _renderer._srvHeap->GetGPUDescriptorHandleForHeapStart());
 
     // Update the MVP matrix
     XMMATRIX mvpMatrix = XMMatrixMultiply(_camera->model, _camera->view);
     mvpMatrix = XMMatrixMultiply(mvpMatrix, _camera->projection);
-    commandList->SetGraphicsRoot32BitConstants(0, sizeof(XMMATRIX) / 4, &mvpMatrix, 0);
+    _scene.MVP = mvpMatrix;
+    commandList->SetGraphicsRoot32BitConstants(0, 64, &_scene, 0);
 
     commandList->DrawIndexedInstanced(_indexCount, 1, 0, 0, 0);
 }
@@ -74,22 +73,17 @@ void GeometryPipeline::CreatePipeline()
     // Allow input layout and deny unnecessary access to certain pipeline stages.
     D3D12_ROOT_SIGNATURE_FLAGS rootSignatureFlags =
         D3D12_ROOT_SIGNATURE_FLAG_ALLOW_INPUT_ASSEMBLER_INPUT_LAYOUT |
-        D3D12_ROOT_SIGNATURE_FLAG_DENY_HULL_SHADER_ROOT_ACCESS |
-        D3D12_ROOT_SIGNATURE_FLAG_DENY_DOMAIN_SHADER_ROOT_ACCESS |
-        D3D12_ROOT_SIGNATURE_FLAG_DENY_GEOMETRY_SHADER_ROOT_ACCESS;
+        D3D12_ROOT_SIGNATURE_FLAG_CBV_SRV_UAV_HEAP_DIRECTLY_INDEXED |
+        D3D12_ROOT_SIGNATURE_FLAG_SAMPLER_HEAP_DIRECTLY_INDEXED;
 
-    CD3DX12_DESCRIPTOR_RANGE textureDescriptorRange(D3D12_DESCRIPTOR_RANGE_TYPE_SRV, 1, 0, 0, D3D12_DESCRIPTOR_RANGE_FLAG_DESCRIPTORS_VOLATILE);
+    CD3DX12_ROOT_PARAMETER rootParameters[1];
+    rootParameters[0].InitAsConstants(64, 0, 0, D3D12_SHADER_VISIBILITY_ALL);
 
-    CD3DX12_ROOT_PARAMETER rootParameters[2];
-    rootParameters[0].InitAsConstants(sizeof(DirectX::XMMATRIX) / 4, 0, 0, D3D12_SHADER_VISIBILITY_VERTEX);
-    rootParameters[1].InitAsDescriptorTable(1, &textureDescriptorRange, D3D12_SHADER_VISIBILITY_PIXEL);
-
-    CD3DX12_STATIC_SAMPLER_DESC albedoSampler;
-    albedoSampler.Init(0);
-    albedoSampler.ShaderVisibility = D3D12_SHADER_VISIBILITY_PIXEL;
+    CD3DX12_STATIC_SAMPLER_DESC defaultSampler;
+    defaultSampler.Init(0);
 
     CD3DX12_ROOT_SIGNATURE_DESC rootSignatureDesc;
-    rootSignatureDesc.Init(_countof(rootParameters), rootParameters, 1, &albedoSampler, rootSignatureFlags);
+    rootSignatureDesc.Init(_countof(rootParameters), rootParameters, 1, &defaultSampler, rootSignatureFlags);
 
     ComPtr<ID3DBlob> signature;
     ComPtr<ID3DBlob> error;
@@ -98,14 +92,6 @@ void GeometryPipeline::CreatePipeline()
 
     const auto& vertexShaderBlob = ShaderCompiler::Compile(ShaderTypes::Vertex, L"assets/shaders/cube_spin.hlsl", L"VSmain").shaderBlob;
     const auto& pixelShaderBlob = ShaderCompiler::Compile(ShaderTypes::Pixel, L"assets/shaders/cube_spin.hlsl", L"PSmain").shaderBlob;
-
-    // Define the vertex input layout.
-    D3D12_INPUT_ELEMENT_DESC inputElementDescs[] =
-    {
-        { "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, D3D12_APPEND_ALIGNED_ELEMENT, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 },
-        { "NORMAL",   0, DXGI_FORMAT_R32G32B32_FLOAT, 0, D3D12_APPEND_ALIGNED_ELEMENT, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 },
-        { "TEXCOORD", 0, DXGI_FORMAT_R32G32_FLOAT,    0, D3D12_APPEND_ALIGNED_ELEMENT, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 },
-    };
 
     // Setup blend descriptions.
     constexpr D3D12_RENDER_TARGET_BLEND_DESC renderTargetBlendDesc = {
@@ -149,7 +135,6 @@ void GeometryPipeline::CreatePipeline()
         .SampleMask = UINT32_MAX,
         .RasterizerState = CD3DX12_RASTERIZER_DESC(D3D12_DEFAULT),
         .DepthStencilState = depthStencilDesc,
-        .InputLayout = { inputElementDescs, _countof(inputElementDescs) },
         .PrimitiveTopologyType = D3D12_PRIMITIVE_TOPOLOGY_TYPE_TRIANGLE,
         .NumRenderTargets = FRAME_COUNT,
         .DSVFormat = DXGI_FORMAT_D32_FLOAT,
@@ -169,45 +154,110 @@ void GeometryPipeline::InitializeAssets()
 {
     auto commandList = _renderer._copyCommandQueue->GetCommandList();
 
-    std::vector<Vertex> cubeVertices;
+    std::vector<XMFLOAT3> cubeVertices;
+    std::vector<XMFLOAT3> cubeNormals;
+    std::vector<XMFLOAT2> cubeUVs;
     std::vector<uint16_t> cubeIndices;
-    CreateCube(cubeVertices, cubeIndices, 1.0f);
-    
-    // Create the vertex buffer.
-    ComPtr<ID3D12Resource> intermediateVertexBuffer;
-    LoadBufferResource(_renderer._device, commandList,
-        &_vertexBuffer, &intermediateVertexBuffer,
-        cubeVertices.size(), sizeof(Vertex), cubeVertices.data());
+    CreateCube(cubeVertices, cubeNormals, cubeUVs, cubeIndices, 1.0f);
 
-    _vertexBufferView.BufferLocation = _vertexBuffer->GetGPUVirtualAddress();
-    _vertexBufferView.StrideInBytes = sizeof(Vertex);
-    _vertexBufferView.SizeInBytes = sizeof(Vertex) * cubeVertices.size();
+    // Create the positions buffer.
+    ComPtr<ID3D12Resource> positionIntermediateBuffer;
+    LoadBufferResource(_renderer._device, commandList,
+        &_positionBuffer.resource, &positionIntermediateBuffer,
+        cubeVertices.size(), sizeof(XMFLOAT3), cubeVertices.data());
+    _positionBuffer.resource->SetName(L"Cube Positions");
+
+    const D3D12_SHADER_RESOURCE_VIEW_DESC positionDesc = {
+        .Format = DXGI_FORMAT_UNKNOWN,
+        .ViewDimension = D3D12_SRV_DIMENSION_BUFFER,
+        .Shader4ComponentMapping = D3D12_DEFAULT_SHADER_4_COMPONENT_MAPPING,
+        .Buffer = {
+            .FirstElement = 0u,
+            .NumElements = static_cast<UINT>(cubeVertices.size()),
+            .StructureByteStride = static_cast<UINT>(sizeof(XMFLOAT3)),
+          },
+    };
+    _positionBuffer.srvIndex = _renderer.CreateSrv(positionDesc, _positionBuffer.resource);
+
+
+    // Create the normals buffer.
+    ComPtr<ID3D12Resource> normalsIntermediateBuffer;
+    LoadBufferResource(_renderer._device, commandList,
+        &_normalBuffer.resource, &normalsIntermediateBuffer,
+        cubeNormals.size(), sizeof(XMFLOAT3), cubeNormals.data());
+    _normalBuffer.resource->SetName(L"Cube Normals");
+
+    const D3D12_SHADER_RESOURCE_VIEW_DESC normalsDesc = {
+        .Format = DXGI_FORMAT_UNKNOWN,
+        .ViewDimension = D3D12_SRV_DIMENSION_BUFFER,
+        .Shader4ComponentMapping = D3D12_DEFAULT_SHADER_4_COMPONENT_MAPPING,
+        .Buffer = {
+            .FirstElement = 0u,
+            .NumElements = static_cast<UINT>(cubeNormals.size()),
+            .StructureByteStride = static_cast<UINT>(sizeof(XMFLOAT3)),
+          },
+    };
+    _normalBuffer.srvIndex = _renderer.CreateSrv(normalsDesc, _normalBuffer.resource);
+
+
+    // Create the uvs buffer.
+    ComPtr<ID3D12Resource> uvIntermediateBuffer;
+    LoadBufferResource(_renderer._device, commandList,
+        &_uvBuffer.resource, &uvIntermediateBuffer,
+        cubeUVs.size(), sizeof(XMFLOAT2), cubeUVs.data());
+    _uvBuffer.resource->SetName(L"Cube UVs");
+
+    const D3D12_SHADER_RESOURCE_VIEW_DESC uvDesc = {
+        .Format = DXGI_FORMAT_UNKNOWN,
+        .ViewDimension = D3D12_SRV_DIMENSION_BUFFER,
+        .Shader4ComponentMapping = D3D12_DEFAULT_SHADER_4_COMPONENT_MAPPING,
+        .Buffer = {
+            .FirstElement = 0u,
+            .NumElements = static_cast<UINT>(cubeUVs.size()),
+            .StructureByteStride = static_cast<UINT>(sizeof(XMFLOAT2)),
+          },
+    };
+    _uvBuffer.srvIndex = _renderer.CreateSrv(uvDesc, _uvBuffer.resource);
+
 
     // Create the index buffer.
-    ComPtr<ID3D12Resource> intermediateIndexBuffer;
+    ComPtr<ID3D12Resource> indexIntermediateBuffer;
     LoadBufferResource(_renderer._device, commandList,
-        &_IndexBuffer, &intermediateIndexBuffer,
+        &_indexBuffer, &indexIntermediateBuffer,
         cubeIndices.size(), sizeof(uint16_t), cubeIndices.data());
-    _indexCount = static_cast<int>(cubeIndices.size());
+    _indexCount = static_cast<uint32_t>(cubeIndices.size());
+    _indexBuffer->SetName(L"Cube Indices");
 
-    _indexBufferView.BufferLocation = _IndexBuffer->GetGPUVirtualAddress();
-    _indexBufferView.Format = DXGI_FORMAT_R16_UINT;
-    _indexBufferView.SizeInBytes = _indexCount * sizeof(uint16_t);
+    _indexBufferView = {
+        .BufferLocation = _indexBuffer->GetGPUVirtualAddress(),
+        .SizeInBytes = static_cast<UINT>(_indexCount * sizeof(uint16_t)),
+        .Format = DXGI_FORMAT_R16_UINT,
+    };
 
     // Create the texture.
-    ComPtr<ID3D12Resource> intermediateAlbedoBuffer;
-    _albedoTextureHandle = _renderer._srvHeap->getDescriptorHandleFromStart().cpuDescriptorHandle;
+    ComPtr<ID3D12Resource> albedoIntermediateBuffer;
     LoadTextureFromFile(_renderer._device, commandList,
-        &_albedoTexture, &intermediateAlbedoBuffer,
+        &_albedoTexture.resource, &albedoIntermediateBuffer,
         L"assets/textures/Utila.jpeg");
-    _albedoTextureView.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
-    _albedoTextureView.Shader4ComponentMapping = D3D12_DEFAULT_SHADER_4_COMPONENT_MAPPING;
-    _albedoTextureView.ViewDimension = D3D12_SRV_DIMENSION_TEXTURE2D;
-    _albedoTextureView.Texture2D.PlaneSlice = 0;
-    _albedoTextureView.Texture2D.MipLevels = 1;
-    _albedoTextureView.Texture2D.MostDetailedMip = 0;
-    _renderer._device->CreateShaderResourceView(_albedoTexture.Get(), &_albedoTextureView, _albedoTextureHandle);
-    _renderer._device->CopyDescriptorsSimple(1, _renderer._srvHeap->getDescriptorHandleFromStart().cpuDescriptorHandle, _albedoTextureHandle, D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV);
+    _albedoTexture.resource->SetName(L"Utila.jpeg");
+
+    const D3D12_SHADER_RESOURCE_VIEW_DESC textureDesc = {
+        .Format = DXGI_FORMAT_R8G8B8A8_UNORM,
+        .ViewDimension = D3D12_SRV_DIMENSION_TEXTURE2D,
+        .Shader4ComponentMapping = D3D12_DEFAULT_SHADER_4_COMPONENT_MAPPING,
+        .Texture2D = {
+            .MostDetailedMip = 0u,
+            .MipLevels = 1u,
+            .PlaneSlice = 0u,
+          },
+    };
+    _albedoTexture.srvIndex = _renderer.CreateSrv(textureDesc, _albedoTexture.resource);
+
+
+    _scene.positionBufferIndex = _positionBuffer.srvIndex;
+    _scene.normalBufferIndex = _normalBuffer.srvIndex;
+    _scene.uvBufferIndex = _uvBuffer.srvIndex;
+    _scene.textureIndex = _albedoTexture.srvIndex;
 
     // Execute list
     uint64_t fenceValue = _renderer._copyCommandQueue->ExecuteCommandList(commandList);

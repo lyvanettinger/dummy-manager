@@ -2,23 +2,6 @@
 
 namespace Util
 {
-	struct Vertex
-	{
-		Vertex() = default;
-
-		explicit Vertex(const DirectX::XMFLOAT3& pos,
-			const DirectX::XMFLOAT3& nor,
-			const DirectX::XMFLOAT2& tex)
-			: position(pos)
-			, normals(nor)
-			, uv(tex)
-		{}
-
-		DirectX::XMFLOAT3 position;
-		DirectX::XMFLOAT3 normals;
-		DirectX::XMFLOAT2 uv;
-	};
-
 	struct Buffer
 	{
 		Microsoft::WRL::ComPtr<ID3D12Resource> resource{};
@@ -36,7 +19,10 @@ namespace Util
 		uint32_t uavIndex{};
 	};
 
-	void CreateCube(std::vector<Vertex>& vertices, std::vector<uint16_t>& indices, float size);
+	void CreateCube(std::vector<DirectX::XMFLOAT3>& vertices,
+		std::vector<DirectX::XMFLOAT3>& normals,
+		std::vector<DirectX::XMFLOAT2>& uvs,
+		std::vector<uint16_t>& indices, float size);
 
 	void LoadBufferResource(Microsoft::WRL::ComPtr<ID3D12Device> device,
 		Microsoft::WRL::ComPtr<ID3D12GraphicsCommandList2> commandList,
