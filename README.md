@@ -15,3 +15,8 @@ A barebones project I made to learn basic DX12 (and eventually font rendering) w
 CMake
 
 Run Setup.bat
+
+## Learning resources
+Some of the most notable learning resources and references used:
+- https://www.3dgep.com/category/graphics-programming/directx/
+- https://rtarun9.github.io/blogs/bindless_rendering/ and their https://github.com/rtarun9/Helios/tree/master
