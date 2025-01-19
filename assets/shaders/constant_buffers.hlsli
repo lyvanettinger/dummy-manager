@@ -18,7 +18,7 @@
 
 #endif
 
-ConstantBufferStruct SceneResources
+ConstantBufferStruct RenderResources
 {
     float4x4 MVP;
     uint positionBufferIndex;

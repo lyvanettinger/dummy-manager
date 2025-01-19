@@ -17,8 +17,8 @@ struct DescriptorHandle
 class DescriptorHeap
 {
 public:
-    explicit DescriptorHeap(Microsoft::WRL::ComPtr<ID3D12Device2>& const device, const D3D12_DESCRIPTOR_HEAP_TYPE descriptorHeapType,
-                                const uint32_t descriptorCount, const std::wstring& descriptorHeapName);
+    DescriptorHeap(const Microsoft::WRL::ComPtr<ID3D12Device2>& device, D3D12_DESCRIPTOR_HEAP_TYPE descriptorHeapType,
+                                uint32_t descriptorCount, const std::wstring& descriptorHeapName);
     ~DescriptorHeap() = default;
 
     DescriptorHeap(const DescriptorHeap& other) = delete;

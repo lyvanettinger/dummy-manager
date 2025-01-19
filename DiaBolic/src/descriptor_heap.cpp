@@ -2,7 +2,7 @@
 
 #include "utility/dx12_helpers.hpp"
 
-DescriptorHeap::DescriptorHeap(Microsoft::WRL::ComPtr<ID3D12Device2>& device, const D3D12_DESCRIPTOR_HEAP_TYPE descriptorHeapType,
+DescriptorHeap::DescriptorHeap(const Microsoft::WRL::ComPtr<ID3D12Device2>& device, const D3D12_DESCRIPTOR_HEAP_TYPE descriptorHeapType,
                                    const uint32_t descriptorCount, const std::wstring& descriptorHeapName)
     {
         const D3D12_DESCRIPTOR_HEAP_FLAGS descriptorHeapFlags = (descriptorHeapType == D3D12_DESCRIPTOR_HEAP_TYPE_DSV ||

@@ -17,7 +17,6 @@ private:
 	Renderer& _renderer;
 	std::shared_ptr<Camera> _camera;
 
-	Microsoft::WRL::ComPtr<ID3D12RootSignature> _rootSignature{};
 	Microsoft::WRL::ComPtr<ID3D12PipelineState> _pipelineState{};
 
 	// temporarily stored here
@@ -28,7 +27,7 @@ private:
 	D3D12_INDEX_BUFFER_VIEW _indexBufferView{};
 	uint32_t _indexCount{};
 
-	SceneResources _scene{};
+	RenderResources _renderResources{};
 
 	Util::Texture _albedoTexture{};
 

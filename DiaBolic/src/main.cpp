@@ -9,7 +9,7 @@ std::shared_ptr<Application> g_app;
 std::shared_ptr<Renderer> g_renderer;
 std::unique_ptr<DialogueSample> g_sample;
 
-void main()
+int main()
 {
 	// TODO: input parameters for application window
 	g_app = std::make_shared<Application>(1920, 1080, "DiaBolic");
@@ -27,7 +27,9 @@ void main()
 
 		g_app->Update();
 		g_sample->Update();
-		g_renderer->Update(deltaTime.count() * 1e-9);
+		g_renderer->Update(static_cast<float>(deltaTime.count() * 1e-9));
 		g_renderer->Render();
 	}
+
+	return 0;
 }

@@ -39,6 +39,8 @@ private:
     std::unique_ptr<CommandQueue> _directCommandQueue;
     std::unique_ptr<CommandQueue> _copyCommandQueue;
 
+	Microsoft::WRL::ComPtr<ID3D12RootSignature> _bindlessRootSignature{};
+
     Microsoft::WRL::ComPtr<ID3D12Resource> _renderTargets[FRAME_COUNT];
 	uint32_t _renderTargetIndex[FRAME_COUNT];
     Microsoft::WRL::ComPtr<ID3D12Resource> _depthTarget;
@@ -61,6 +63,7 @@ private:
 
 	void CreateRenderTargets();
 	void CreateDepthTarget();
+	void CreateBindlessRootSignature();
 
 	[[nodiscard]] uint32_t CreateCbv(const D3D12_CONSTANT_BUFFER_VIEW_DESC& cbvCreationDesc) const;
 	[[nodiscard]] uint32_t CreateSrv(const D3D12_SHADER_RESOURCE_VIEW_DESC& srvCreationDesc, const Microsoft::WRL::ComPtr<ID3D12Resource>& resource) const;

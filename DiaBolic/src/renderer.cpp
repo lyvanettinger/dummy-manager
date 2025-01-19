@@ -33,6 +33,7 @@ Renderer::Renderer(std::shared_ptr<Application> app) :
     InitializeDescriptorHeaps();
     InitializeSwapchainResources();
     CreateDepthTarget();
+    CreateBindlessRootSignature();
 
     // Create pipelines
     _geometryPipeline = std::make_unique<GeometryPipeline>(*this, _camera);
@@ -99,7 +100,7 @@ void Renderer::SetDescriptorHeaps(const Microsoft::WRL::ComPtr<ID3D12GraphicsCom
         _samplerHeap->GetDescriptorHeap(),
     };
 
-    commandList->SetDescriptorHeaps(shaderVisibleDescriptorHeaps.size(), shaderVisibleDescriptorHeaps.data());
+    commandList->SetDescriptorHeaps(static_cast<UINT>(shaderVisibleDescriptorHeaps.size()), shaderVisibleDescriptorHeaps.data());
 }
 
 
@@ -255,6 +256,29 @@ void Renderer::CreateDepthTarget()
     _depthTargetIndex = CreateDsv(dsv, _depthTarget);
     _depthTarget->SetName(L"Depth Target");
 }
+
+void Renderer::CreateBindlessRootSignature()
+{
+    D3D12_ROOT_SIGNATURE_FLAGS rootSignatureFlags =
+        D3D12_ROOT_SIGNATURE_FLAG_ALLOW_INPUT_ASSEMBLER_INPUT_LAYOUT |
+        D3D12_ROOT_SIGNATURE_FLAG_CBV_SRV_UAV_HEAP_DIRECTLY_INDEXED |
+        D3D12_ROOT_SIGNATURE_FLAG_SAMPLER_HEAP_DIRECTLY_INDEXED;
+
+    CD3DX12_ROOT_PARAMETER rootParameters[1];
+    rootParameters[0].InitAsConstants(64, 0, 0, D3D12_SHADER_VISIBILITY_ALL);
+
+    CD3DX12_STATIC_SAMPLER_DESC defaultSampler;
+    defaultSampler.Init(0);
+
+    CD3DX12_ROOT_SIGNATURE_DESC rootSignatureDesc;
+    rootSignatureDesc.Init(_countof(rootParameters), rootParameters, 1, &defaultSampler, rootSignatureFlags);
+
+    Microsoft::WRL::ComPtr<ID3DBlob> signature;
+    Microsoft::WRL::ComPtr<ID3DBlob> error;
+    Util::ThrowIfFailed(D3D12SerializeRootSignature(&rootSignatureDesc, D3D_ROOT_SIGNATURE_VERSION_1, &signature, &error));
+    Util::ThrowIfFailed(_device->CreateRootSignature(0, signature->GetBufferPointer(), signature->GetBufferSize(), IID_PPV_ARGS(&_bindlessRootSignature)));
+}
+
 
 uint32_t Renderer::CreateCbv(const D3D12_CONSTANT_BUFFER_VIEW_DESC& cbvCreationDesc) const
 {

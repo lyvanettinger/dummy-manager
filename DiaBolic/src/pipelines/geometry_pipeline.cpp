@@ -29,7 +29,7 @@ void GeometryPipeline::PopulateCommandlist(const Microsoft::WRL::ComPtr<ID3D12Gr
 {
     // Set necessary stuff.
     commandList->SetPipelineState(_pipelineState.Get());
-    commandList->SetGraphicsRootSignature(_rootSignature.Get());
+    commandList->SetGraphicsRootSignature(_renderer._bindlessRootSignature.Get());
 
     // Start recording.
     commandList->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
@@ -38,8 +38,8 @@ void GeometryPipeline::PopulateCommandlist(const Microsoft::WRL::ComPtr<ID3D12Gr
     // Update the MVP matrix
     XMMATRIX mvpMatrix = XMMatrixMultiply(_camera->model, _camera->view);
     mvpMatrix = XMMatrixMultiply(mvpMatrix, _camera->projection);
-    _scene.MVP = mvpMatrix;
-    commandList->SetGraphicsRoot32BitConstants(0, 64, &_scene, 0);
+    _renderResources.MVP = mvpMatrix;
+    commandList->SetGraphicsRoot32BitConstants(0, 64, &_renderResources, 0);
 
     commandList->DrawIndexedInstanced(_indexCount, 1, 0, 0, 0);
 }
@@ -67,29 +67,6 @@ void GeometryPipeline::Update(float deltaTime)
 
 void GeometryPipeline::CreatePipeline()
 {
-    // Create an empty root signature.
-    // https://www.3dgep.com/learning-directx-12-2/#Root_Signatures
-    // A root signature defines the paramteres that are passed to the shader pipeline.
-    // Allow input layout and deny unnecessary access to certain pipeline stages.
-    D3D12_ROOT_SIGNATURE_FLAGS rootSignatureFlags =
-        D3D12_ROOT_SIGNATURE_FLAG_ALLOW_INPUT_ASSEMBLER_INPUT_LAYOUT |
-        D3D12_ROOT_SIGNATURE_FLAG_CBV_SRV_UAV_HEAP_DIRECTLY_INDEXED |
-        D3D12_ROOT_SIGNATURE_FLAG_SAMPLER_HEAP_DIRECTLY_INDEXED;
-
-    CD3DX12_ROOT_PARAMETER rootParameters[1];
-    rootParameters[0].InitAsConstants(64, 0, 0, D3D12_SHADER_VISIBILITY_ALL);
-
-    CD3DX12_STATIC_SAMPLER_DESC defaultSampler;
-    defaultSampler.Init(0);
-
-    CD3DX12_ROOT_SIGNATURE_DESC rootSignatureDesc;
-    rootSignatureDesc.Init(_countof(rootParameters), rootParameters, 1, &defaultSampler, rootSignatureFlags);
-
-    ComPtr<ID3DBlob> signature;
-    ComPtr<ID3DBlob> error;
-    ThrowIfFailed(D3D12SerializeRootSignature(&rootSignatureDesc, D3D_ROOT_SIGNATURE_VERSION_1, &signature, &error));
-    ThrowIfFailed(_renderer._device->CreateRootSignature(0, signature->GetBufferPointer(), signature->GetBufferSize(), IID_PPV_ARGS(&_rootSignature)));
-
     const auto& vertexShaderBlob = ShaderCompiler::Compile(ShaderTypes::Vertex, L"assets/shaders/cube_spin.hlsl", L"VSmain").shaderBlob;
     const auto& pixelShaderBlob = ShaderCompiler::Compile(ShaderTypes::Pixel, L"assets/shaders/cube_spin.hlsl", L"PSmain").shaderBlob;
 
@@ -128,7 +105,7 @@ void GeometryPipeline::CreatePipeline()
 
     // Setup PSO.
     D3D12_GRAPHICS_PIPELINE_STATE_DESC psoDesc = {
-        .pRootSignature = _rootSignature.Get(),
+        .pRootSignature = _renderer._bindlessRootSignature.Get(),
         .VS = CD3DX12_SHADER_BYTECODE(vertexShaderBlob->GetBufferPointer(), vertexShaderBlob->GetBufferSize()),
         .PS = CD3DX12_SHADER_BYTECODE(pixelShaderBlob->GetBufferPointer(), pixelShaderBlob->GetBufferSize()),
         .BlendState = blendDesc,
@@ -254,11 +231,11 @@ void GeometryPipeline::InitializeAssets()
     };
     _albedoTexture.srvIndex = _renderer.CreateSrv(textureDesc, _albedoTexture.resource);
 
-
-    _scene.positionBufferIndex = _positionBuffer.srvIndex;
-    _scene.normalBufferIndex = _normalBuffer.srvIndex;
-    _scene.uvBufferIndex = _uvBuffer.srvIndex;
-    _scene.textureIndex = _albedoTexture.srvIndex;
+    // Set render resources.
+    _renderResources.positionBufferIndex = _positionBuffer.srvIndex;
+    _renderResources.normalBufferIndex = _normalBuffer.srvIndex;
+    _renderResources.uvBufferIndex = _uvBuffer.srvIndex;
+    _renderResources.textureIndex = _albedoTexture.srvIndex;
 
     // Execute list
     uint64_t fenceValue = _renderer._copyCommandQueue->ExecuteCommandList(commandList);
