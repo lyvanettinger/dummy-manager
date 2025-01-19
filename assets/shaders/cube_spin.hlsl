@@ -27,6 +27,6 @@ SamplerState defaultSampler : register(s0);
 
 float4 PSmain(VSOutput PSinput) : SV_Target0
 {
-    return float4(PSinput.uv.x, PSinput.uv.y, 0.0, 1.0);
-    //return AlbedoTexture.Sample(AlbedoSampler, input.uv);
+    Texture2D<float4> albedoTexture = ResourceDescriptorHeap[scene.textureIndex];
+    return albedoTexture.Sample(defaultSampler, PSinput.uv);
 }
