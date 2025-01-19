@@ -47,6 +47,7 @@ add_dependencies( DiaBolic copy-assets)
 
 target_include_directories( DiaBolic
     PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/inc
+	PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}../assets/shaders
 )
 
 target_link_libraries( DiaBolic

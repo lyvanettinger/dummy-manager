@@ -19,6 +19,19 @@ namespace Util
 		DirectX::XMFLOAT2 uv;
 	};
 
+	struct Buffer
+	{
+		uint32_t srvIndex{};
+		uint32_t uavIndex{};
+		uint32_t cbvIndex{};
+	};
+
+	struct Texture
+	{
+		uint32_t srvIndex{};
+		uint32_t uavIndex{};
+	};
+
 	void CreateCube(std::vector<Vertex>& vertices, std::vector<uint16_t>& indices, float size);
 
 	void LoadBufferResource(Microsoft::WRL::ComPtr<ID3D12Device> device,

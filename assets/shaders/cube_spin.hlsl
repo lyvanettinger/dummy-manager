@@ -1,3 +1,5 @@
+#include "constant_buffers.hlsli"
+
 struct VSInput
 {
     float3 position : POSITION;
@@ -12,16 +14,13 @@ struct VSOutput
     float4 position : SV_POSITION;
 };
 
-cbuffer ModelViewProjectionCB : register(b0)
-{
-    matrix MVP;
-};
+ConstantBuffer<SceneResources> scene : register(b0);
 
 VSOutput VSmain(VSInput VSinput)
 {
     VSOutput result;
 
-    result.position = mul(MVP, float4(VSinput.position, 1.0f));
+    result.position = mul(scene.MVP, float4(VSinput.position, 1.0f));
     result.normal = VSinput.normal; // TODO: multiply with inverse transpose
     result.uv = VSinput.uv;
 

@@ -68,6 +68,10 @@ namespace Util
         compilationArguments.push_back(L"-T");
         compilationArguments.push_back(targetProfile.c_str());
 
+        // -I for the target include directory
+        compilationArguments.push_back(L"-I");
+        compilationArguments.push_back(shaderDirectory.c_str());
+
         // Strip reflection data and pdbs (see later)
         compilationArguments.push_back(L"-Qstrip_debug");
         compilationArguments.push_back(L"-Qstrip_reflect");
@@ -108,14 +112,14 @@ namespace Util
         }
 
         ComPtr<IDxcBlob> compiledShaderBlob{nullptr};
-        compiledShaderBuffer->GetOutput(DXC_OUT_OBJECT, IID_PPV_ARGS(&compiledShaderBlob), nullptr);
+        ThrowIfFailed(compiledShaderBuffer->GetOutput(DXC_OUT_OBJECT, IID_PPV_ARGS(&compiledShaderBlob), nullptr));
 
         shader.shaderBlob = compiledShaderBlob;
 
         ComPtr<IDxcBlob> rootSignatureBlob{nullptr};
         if (extractRootSignature)
         {
-            compiledShaderBuffer->GetOutput(DXC_OUT_ROOT_SIGNATURE, IID_PPV_ARGS(&rootSignatureBlob), nullptr);
+            ThrowIfFailed(compiledShaderBuffer->GetOutput(DXC_OUT_ROOT_SIGNATURE, IID_PPV_ARGS(&rootSignatureBlob), nullptr));
             shader.rootSignatureBlob = rootSignatureBlob;
         }
 
