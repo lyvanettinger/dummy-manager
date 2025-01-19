@@ -117,10 +117,10 @@ void Util::LoadTextureFromFile(
     Microsoft::WRL::ComPtr<ID3D12Device> device,
     Microsoft::WRL::ComPtr<ID3D12GraphicsCommandList2> commandList,
     ID3D12Resource** pDestinationResource, ID3D12Resource** pIntermediateResource,
-    const std::wstring& fileName)
+    const std::wstring& fileName, DXGI_FORMAT& format)
 {
     fs::path filePath(fileName);
-    if (!fs::exists(filePath))
+    if (!exists(filePath))
     {
         throw std::exception("File not found.");
     }
@@ -130,7 +130,7 @@ void Util::LoadTextureFromFile(
 
     if (filePath.extension() == ".dds")
     {
-        ThrowIfFailed(DirectX::LoadFromDDSFile(
+        ThrowIfFailed(LoadFromDDSFile(
             fileName.c_str(),
             DirectX::DDS_FLAGS_NONE,
             &metadata,
@@ -138,21 +138,21 @@ void Util::LoadTextureFromFile(
     }
     else if (filePath.extension() == ".hdr")
     {
-        ThrowIfFailed(DirectX::LoadFromHDRFile(
+        ThrowIfFailed(LoadFromHDRFile(
             fileName.c_str(),
             &metadata,
             scratchImage));
     }
     else if (filePath.extension() == ".tga")
     {
-        ThrowIfFailed(DirectX::LoadFromTGAFile(
+        ThrowIfFailed(LoadFromTGAFile(
             fileName.c_str(),
             &metadata,
             scratchImage));
     }
     else
     {
-        ThrowIfFailed(DirectX::LoadFromWICFile(
+        ThrowIfFailed(LoadFromWICFile(
             fileName.c_str(),
             DirectX::WIC_FLAGS_NONE,
             &metadata,
@@ -184,8 +184,8 @@ void Util::LoadTextureFromFile(
         break;
     default:
         throw std::exception("Invalid texture dimension.");
-        break;
     }
+    format = metadata.format;
     
     CD3DX12_HEAP_PROPERTIES textureHeapProps = CD3DX12_HEAP_PROPERTIES(D3D12_HEAP_TYPE_DEFAULT);
     ThrowIfFailed(device->CreateCommittedResource(

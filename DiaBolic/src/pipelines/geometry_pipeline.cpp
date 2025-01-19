@@ -158,7 +158,7 @@ void GeometryPipeline::InitializeAssets()
     std::vector<XMFLOAT3> cubeNormals;
     std::vector<XMFLOAT2> cubeUVs;
     std::vector<uint16_t> cubeIndices;
-    CreateCube(cubeVertices, cubeNormals, cubeUVs, cubeIndices, 1.0f);
+    CreateCube(cubeVertices, cubeNormals, cubeUVs, cubeIndices, 2.5f);
 
     // Create the positions buffer.
     ComPtr<ID3D12Resource> positionIntermediateBuffer;
@@ -236,13 +236,14 @@ void GeometryPipeline::InitializeAssets()
 
     // Create the texture.
     ComPtr<ID3D12Resource> albedoIntermediateBuffer;
+    DXGI_FORMAT format{};
     LoadTextureFromFile(_renderer._device, commandList,
         &_albedoTexture.resource, &albedoIntermediateBuffer,
-        L"assets/textures/Utila.jpeg");
-    _albedoTexture.resource->SetName(L"Utila.jpeg");
+        L"assets/textures/jeremygraphics.png", format);
+    _albedoTexture.resource->SetName(L"jeremygraphics.png");
 
     const D3D12_SHADER_RESOURCE_VIEW_DESC textureDesc = {
-        .Format = DXGI_FORMAT_R8G8B8A8_UNORM,
+        .Format = format,
         .ViewDimension = D3D12_SRV_DIMENSION_TEXTURE2D,
         .Shader4ComponentMapping = D3D12_DEFAULT_SHADER_4_COMPONENT_MAPPING,
         .Texture2D = {

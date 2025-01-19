@@ -33,7 +33,7 @@ namespace Util
 	void LoadTextureFromFile(Microsoft::WRL::ComPtr<ID3D12Device> device, 
 		Microsoft::WRL::ComPtr<ID3D12GraphicsCommandList2> commandList,
 		ID3D12Resource** pDestinationResource, ID3D12Resource** pIntermediateResource,
-		const std::wstring& filePath);
+		const std::wstring& filePath, DXGI_FORMAT& format);
 	
 	void TransitionResource(Microsoft::WRL::ComPtr<ID3D12GraphicsCommandList2> commandList, 
 		Microsoft::WRL::ComPtr<ID3D12Resource> resource, 
