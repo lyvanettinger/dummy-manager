@@ -32,7 +32,7 @@ Renderer::Renderer(std::shared_ptr<Application> app) :
     InitializeCommandQueues();
     InitializeDescriptorHeaps();
     InitializeSwapchainResources();
-    ResizeDepthBuffer();
+    CreateDepthTarget();
 
     // Create pipelines
     _geometryPipeline = std::make_unique<GeometryPipeline>(*this, _camera);
@@ -194,18 +194,19 @@ void Renderer::InitializeSwapchainResources()
 
 void Renderer::CreateRenderTargets()
 {
-    DescriptorHandle rtvHandle = _rtvHeap->getDescriptorHandleFromStart();
-
     // Create a RTV for each frame.
     for (UINT n = 0; n < FRAME_COUNT; n++)
     {
         Util::ThrowIfFailed(_swapChain->GetBuffer(n, IID_PPV_ARGS(&_renderTargets[n])));
-        _device->CreateRenderTargetView(_renderTargets[n].Get(), nullptr, rtvHandle.cpuDescriptorHandle);
-        _rtvHeap->offsetDescriptor(rtvHandle);
+        const D3D12_RENDER_TARGET_VIEW_DESC desc = {
+            .Format = DXGI_FORMAT_R8G8B8A8_UNORM,
+            .ViewDimension = D3D12_RTV_DIMENSION_TEXTURE2D
+        };
+        _renderTargetIndex[n] = CreateRtv(desc, _renderTargets[n]);
     }
 }
 
-void Renderer::ResizeDepthBuffer()
+void Renderer::CreateDepthTarget()
 {
     // Flush any GPU commands that might be referencing the depth buffer.
     Flush();
@@ -223,7 +224,7 @@ void Renderer::ResizeDepthBuffer()
         &resourceDesc,
         D3D12_RESOURCE_STATE_DEPTH_WRITE,
         &optimizedClearValue,
-        IID_PPV_ARGS(&_depthBuffer)
+        IID_PPV_ARGS(&_depthTarget)
     ));
 
     D3D12_DEPTH_STENCIL_VIEW_DESC dsv = {};
@@ -232,6 +233,66 @@ void Renderer::ResizeDepthBuffer()
     dsv.Texture2D.MipSlice = 0;
     dsv.Flags = D3D12_DSV_FLAG_NONE;
 
-    _device->CreateDepthStencilView(_depthBuffer.Get(), &dsv,
-        _dsvHeap->getDescriptorHandleFromStart().cpuDescriptorHandle);
+    _depthTargetIndex = CreateDsv(dsv, _depthTarget);
+}
+
+uint32_t Renderer::CreateCbv(const D3D12_CONSTANT_BUFFER_VIEW_DESC& cbvCreationDesc) const
+{
+    const uint32_t cbvIndex = _srvHeap->getCurrentDescriptorIndex();
+
+    _device->CreateConstantBufferView(&cbvCreationDesc,
+                                       _srvHeap->getCurrentDescriptorHandle().cpuDescriptorHandle);
+
+    _srvHeap->offsetCurrentHandle();
+
+    return cbvIndex;
+}
+
+uint32_t Renderer::CreateSrv(const D3D12_SHADER_RESOURCE_VIEW_DESC& srvCreationDesc, const Microsoft::WRL::ComPtr<ID3D12Resource>& resource) const
+{
+    const uint32_t srvIndex = _srvHeap->getCurrentDescriptorIndex();
+
+    _device->CreateShaderResourceView(resource.Get(), &srvCreationDesc,
+                                       _srvHeap->getCurrentDescriptorHandle().cpuDescriptorHandle);
+
+    _srvHeap->offsetCurrentHandle();
+
+    return srvIndex;
+}
+
+uint32_t Renderer::CreateUav(const D3D12_UNORDERED_ACCESS_VIEW_DESC& uavCreationDesc, const Microsoft::WRL::ComPtr<ID3D12Resource>& resource) const
+{
+    const uint32_t uavIndex = _srvHeap->getCurrentDescriptorIndex();
+
+    _device->CreateUnorderedAccessView(
+        resource.Get(), nullptr, &uavCreationDesc,
+        _srvHeap->getCurrentDescriptorHandle().cpuDescriptorHandle);
+
+    _srvHeap->offsetCurrentHandle();
+
+    return uavIndex;
+}
+
+uint32_t Renderer::CreateRtv(const D3D12_RENDER_TARGET_VIEW_DESC& rtvCreationDesc, const Microsoft::WRL::ComPtr<ID3D12Resource>& resource) const
+{
+    const uint32_t rtvIndex = _rtvHeap->getCurrentDescriptorIndex();
+
+    _device->CreateRenderTargetView(resource.Get(), &rtvCreationDesc,
+                                     _rtvHeap->getCurrentDescriptorHandle().cpuDescriptorHandle);
+
+    _rtvHeap->offsetCurrentHandle();
+
+    return rtvIndex;
+}
+
+uint32_t Renderer::CreateDsv(const D3D12_DEPTH_STENCIL_VIEW_DESC& dsvCreationDesc, const Microsoft::WRL::ComPtr<ID3D12Resource>& resource) const
+{
+    const uint32_t dsvIndex = _dsvHeap->getCurrentDescriptorIndex();
+
+    _device->CreateDepthStencilView(resource.Get(), &dsvCreationDesc,
+                                     _dsvHeap->getCurrentDescriptorHandle().cpuDescriptorHandle);
+
+    _dsvHeap->offsetCurrentHandle();
+
+    return dsvIndex;
 }

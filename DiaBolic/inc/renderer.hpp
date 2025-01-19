@@ -40,7 +40,9 @@ private:
     std::unique_ptr<CommandQueue> _copyCommandQueue;
 
     Microsoft::WRL::ComPtr<ID3D12Resource> _renderTargets[FRAME_COUNT];
-    Microsoft::WRL::ComPtr<ID3D12Resource> _depthBuffer;
+	uint32_t _renderTargetIndex[FRAME_COUNT];
+    Microsoft::WRL::ComPtr<ID3D12Resource> _depthTarget;
+	uint32_t _depthTargetIndex;
 
 	std::unique_ptr<DescriptorHeap> _rtvHeap;
 	std::unique_ptr<DescriptorHeap> _dsvHeap;
@@ -58,7 +60,13 @@ private:
     void InitializeSwapchainResources();
 
 	void CreateRenderTargets();
-	void ResizeDepthBuffer();
+	void CreateDepthTarget();
+
+	[[nodiscard]] uint32_t CreateCbv(const D3D12_CONSTANT_BUFFER_VIEW_DESC& cbvCreationDesc) const;
+	[[nodiscard]] uint32_t CreateSrv(const D3D12_SHADER_RESOURCE_VIEW_DESC& srvCreationDesc, const Microsoft::WRL::ComPtr<ID3D12Resource>& resource) const;
+	[[nodiscard]] uint32_t CreateUav(const D3D12_UNORDERED_ACCESS_VIEW_DESC& uavCreationDesc, const Microsoft::WRL::ComPtr<ID3D12Resource>& resource) const;
+	[[nodiscard]] uint32_t CreateRtv(const D3D12_RENDER_TARGET_VIEW_DESC& rtvCreationDesc, const Microsoft::WRL::ComPtr<ID3D12Resource>& resource) const;
+	[[nodiscard]] uint32_t CreateDsv(const D3D12_DEPTH_STENCIL_VIEW_DESC& dsvCreationDesc, const Microsoft::WRL::ComPtr<ID3D12Resource>& resource) const;
 
     // friend classes
     friend class GeometryPipeline;
