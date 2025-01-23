@@ -13,11 +13,9 @@ Screenshot of the current state:
 - Basic font rendering
 
 ## How to build
-(TODO: write out)
 
-CMake
-
-Run Setup.bat
+- Build project with CMake
+- Run Setup.bat
 
 ## Learning resources
 Some of the most notable learning resources and references used:
