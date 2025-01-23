@@ -17,6 +17,9 @@ Screenshot of the current state:
 - Build project with CMake
 - Run Setup.bat
 
+If the compiler is complaining about git submodules, run
+`git submodule update --init --recursive`.
+
 ## Learning resources
 Some of the most notable learning resources and references used:
 - https://www.3dgep.com/category/graphics-programming/directx/
