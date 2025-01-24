@@ -2,7 +2,8 @@
 
 A barebones project I made to learn basic DX12 (and eventually font rendering) with. It has set out to become a bit of a framework along the way.
 Screenshot of the current state:
-![image](https://github.com/user-attachments/assets/17f92192-7620-4588-a973-a33b3fa31be5)
+![image](https://github.com/user-attachments/assets/2db4957a-383d-4ab9-b6d1-f0192cf01e3e)
+
 
 #### It features:
 - A complete bindless model (for buffers + textures)
