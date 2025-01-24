@@ -216,8 +216,8 @@ void GeometryPipeline::InitializeAssets()
     DXGI_FORMAT format{};
     LoadTextureFromFile(_renderer._device, commandList,
         &_albedoTexture.resource, &albedoIntermediateBuffer,
-        L"assets/textures/jeremygraphics.png", format);
-    _albedoTexture.resource->SetName(L"jeremygraphics.png");
+        L"assets/textures/Utila.jpeg", format);
+    _albedoTexture.resource->SetName(L"Utila.jpeg");
 
     const D3D12_SHADER_RESOURCE_VIEW_DESC textureDesc = {
         .Format = format,
