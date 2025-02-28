@@ -1,17 +1,9 @@
-# DiaBolic
+# Dummy manager
 
-A barebones project I made to learn basic DX12 (and eventually font rendering) with. It has set out to become a bit of a framework along the way.
-Screenshot of the current state:
-![image](https://github.com/user-attachments/assets/2db4957a-383d-4ab9-b6d1-f0192cf01e3e)
-
-
-#### It features:
-- A complete bindless model (for buffers + textures)
-- DXC shader compilation
-- Basic wrappers for command queues and descriptor heaps
+Currently this is just a fork/clone of my DiaBolic dummy renderer with which I plan to make a game with in the future.
 
 #### Future plans:
-- Basic font rendering
+- TBD
 
 ## How to build
 
@@ -20,8 +12,3 @@ Screenshot of the current state:
 
 If the compiler is complaining about git submodules, run
 `git submodule update --init --recursive`.
-
-## Learning resources
-Some of the most notable learning resources and references used:
-- https://www.3dgep.com/category/graphics-programming/directx/
-- https://rtarun9.github.io/blogs/bindless_rendering/ and their https://github.com/rtarun9/Helios/tree/master
